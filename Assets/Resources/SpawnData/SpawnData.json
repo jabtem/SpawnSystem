@@ -1,0 +1,26 @@
+{
+  "0": {
+    "Sg": [],
+    "scId": 0,
+    "explanation": "asdfadf",
+    "sceneName": "Test"
+  },
+  "1": {
+    "Sg": [],
+    "scId": 1,
+    "explanation": "addsfasdfa",
+    "sceneName": "Test"
+  },
+  "2": {
+    "Sg": [],
+    "scId": 2,
+    "explanation": "adsfasdfasd",
+    "sceneName": "Test"
+  },
+  "3": {
+    "Sg": [],
+    "scId": 3,
+    "explanation": "dasfasdfadfadf",
+    "sceneName": "Test"
+  }
+}
