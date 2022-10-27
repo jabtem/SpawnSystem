@@ -19,6 +19,9 @@ public class SpawnSystemManager : MonoBehaviour
         [Header("부가 설명")]
         public string explanation;
 
+
+        [Header("스폰 포인트 생성버튼 클릭여부")]
+        public bool isClick;
     }
 
     [System.Serializable]
@@ -71,6 +74,6 @@ public class SpawnSystemManager : MonoBehaviour
     public int sceneId;
 
     public List<SpawnCluster> spawnClusters;
-
+    public List<bool> isButtonClick;
 
 }
