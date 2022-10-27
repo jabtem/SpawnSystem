@@ -5,11 +5,11 @@ using UnityEngine;
 
 
 [CanEditMultipleObjects]//다중선택을 가능하게함
-[CustomEditor(typeof(SpawnSystemManager))]
-public class SpawnManagerInspector : Editor
+[CustomEditor(typeof(SpawnClusterContainer))]
+public class SpawnClusterContainerrInspector : Editor
 {
 
-    SpawnSystemManager spawnSystemManger;
+    SpawnClusterContainer spawnSystemManger;
     SerializedProperty spawnClusters;
 
 
@@ -21,7 +21,7 @@ public class SpawnManagerInspector : Editor
     {
         if (spawnSystemManger == null)
         {
-            spawnSystemManger = (SpawnSystemManager)target;
+            spawnSystemManger = (SpawnClusterContainer)target;
         }
     }
 
@@ -58,7 +58,7 @@ public class SpawnManagerInspector : Editor
         GUI.backgroundColor = Color.white;
         if (GUILayout.Button("클러스터 추가"))
         {
-            spawnSystemManger.spawnClusters.Add(new SpawnSystemManager.SpawnCluster());
+            spawnSystemManger.spawnClusters.Add(new SpawnClusterContainer.SpawnCluster());
         }
 
         //base.OnInspectorGUI();
@@ -79,12 +79,21 @@ public class SpawnManagerInspector : Editor
 
             if (Event.current.button == 0)
             {
+                GameObject group = new GameObject($"SpawnGroup");
+                SpawnGroup sg = group.AddComponent<SpawnGroup>();
+                sg.scId = spawnSystemManger.spawnClusters[curIndex].scId;
+                spawnSystemManger.spawnClusters[curIndex].Sg.Add(sg);
 
                 Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     Debug.Log(hit.point);
+                    GameObject go = new GameObject($"Point{curIndex}");
+                    SpawnPoint sp = go.AddComponent<SpawnPoint>();
+
+                    sg.Sp.Add(sp);
+                    go.transform.position = hit.point;
                 }
             }
         }
