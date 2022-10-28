@@ -16,7 +16,9 @@ public class SpawnClusterContainerrInspector : Editor
 
     //버튼을 클릭한 클러스터의 인덱스
     public int curIndex = -1;
+    public SpawnGroup curSg;
 
+    int pointIndex = 0;
     private void OnEnable()
     {
         if (spawnSystemManger == null)
@@ -40,14 +42,23 @@ public class SpawnClusterContainerrInspector : Editor
             {
                 curIndex = i;
                 spawnSystemManger.spawnClusters[i].isClick = true;
+                pointIndex = 0;
+                GameObject group = new GameObject($"SpawnGroup");
+                group.transform.SetParent(spawnSystemManger.transform);
+                curSg = group.AddComponent<SpawnGroup>();
+                curSg.Sp = new();
+                curSg.scId = spawnSystemManger.spawnClusters[curIndex].scId;
+                spawnSystemManger.spawnClusters[curIndex].Sg.Add(curSg);
                 view.Focus();
+
+                
 
             }
             GUI.backgroundColor = Color.red;
             if (spawnSystemManger.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
             {
-                curIndex = -1;
-                spawnSystemManger.spawnClusters[i].isClick = false;
+                FinishEdit(i);
+
             }
 
             //spawnSystemManger.spawnClusters[i].scId = EditorGUILayout.IntField("클러스터 ID", spawnSystemManger.spawnClusters[i].scId);
@@ -62,6 +73,24 @@ public class SpawnClusterContainerrInspector : Editor
         }
 
         //base.OnInspectorGUI();
+    }
+    
+
+    void FinishEdit(int index)
+    {
+        if(index >=0)
+        {
+            spawnSystemManger.spawnClusters[index].isClick = false;
+            curIndex = -1;
+
+            if(curSg.Sp.Count ==0)
+            {
+                spawnSystemManger.spawnClusters[index].Sg.Remove(curSg);
+                DestroyImmediate(curSg.gameObject);
+                curSg = null;
+            }
+        }
+
     }
 
     public void OnSceneGUI()
@@ -79,26 +108,33 @@ public class SpawnClusterContainerrInspector : Editor
 
             if (Event.current.button == 0)
             {
-                GameObject group = new GameObject($"SpawnGroup");
-                SpawnGroup sg = group.AddComponent<SpawnGroup>();
-                sg.scId = spawnSystemManger.spawnClusters[curIndex].scId;
-                spawnSystemManger.spawnClusters[curIndex].Sg.Add(sg);
+
+
 
                 Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    Debug.Log(hit.point);
-                    GameObject go = new GameObject($"Point{curIndex}");
-                    SpawnPoint sp = go.AddComponent<SpawnPoint>();
-
-                    sg.Sp.Add(sp);
+                    GameObject go = new GameObject($"Point{pointIndex}");
                     go.transform.position = hit.point;
+                    pointIndex++;
+                    SpawnPoint sp = go.AddComponent<SpawnPoint>();
+                    go.transform.SetParent(curSg.transform);
+                    curSg.Sp.Add(sp);
+
+
                 }
             }
         }
 
 
+    }
+
+
+    //에디터가 포커스가 빠져나갔을때 호출
+    private void OnDisable()
+    {
+        FinishEdit(curIndex);
     }
 
     public static SceneView GetSceneView()
