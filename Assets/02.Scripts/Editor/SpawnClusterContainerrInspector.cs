@@ -2,28 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
+using System.IO;
 
 [CanEditMultipleObjects]//다중선택을 가능하게함
 [CustomEditor(typeof(SpawnClusterContainer))]
 public class SpawnClusterContainerrInspector : Editor
 {
 
-    SpawnClusterContainer spawnSystemManger;
+    SpawnClusterContainer spawnClusterContainer;
     SerializedProperty spawnClusters;
 
 
 
     //버튼을 클릭한 클러스터의 인덱스
     public int curIndex = -1;
-    public SpawnGroup curSg;
+    public SpawnGroupObj curSg;
 
     int pointIndex = 0;
     private void OnEnable()
     {
-        if (spawnSystemManger == null)
+        if (spawnClusterContainer == null)
         {
-            spawnSystemManger = (SpawnClusterContainer)target;
+            spawnClusterContainer = (SpawnClusterContainer)target;
         }
     }
 
@@ -34,28 +37,29 @@ public class SpawnClusterContainerrInspector : Editor
 
 
 
-        for (int i = 0; i < spawnSystemManger.spawnClusters.Count; ++i)
+        for (int i = 0; i < spawnClusterContainer.spawnClusters.Count; ++i)
         {
             GUILayout.Label($"Spawn Cluster Num {i}");
             GUI.backgroundColor = Color.green;
-            if (!spawnSystemManger.spawnClusters[i].isClick && GUILayout.Button("Point Set Start") )
+            if (!spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set Start") )
             {
                 curIndex = i;
-                spawnSystemManger.spawnClusters[i].isClick = true;
+                spawnClusterContainer.spawnClusters[i].isClick = true;
                 pointIndex = 0;
                 GameObject group = new GameObject($"SpawnGroup");
-                group.transform.SetParent(spawnSystemManger.transform);
-                curSg = group.AddComponent<SpawnGroup>();
-                curSg.Sp = new();
-                curSg.scId = spawnSystemManger.spawnClusters[curIndex].scId;
-                spawnSystemManger.spawnClusters[curIndex].Sg.Add(curSg);
+                group.transform.SetParent(spawnClusterContainer.transform);
+                curSg = group.AddComponent<SpawnGroupObj>();
+                curSg.spawnGroupData = new(spawnClusterContainer.spawnClusters[curIndex].scId);
+                //curSg.spawnGroupData.Sp = new();
+                //curSg.spawnGroupData.scId = spawnClusterContainer.spawnClusters[curIndex].scId;
+                spawnClusterContainer.spawnClusters[curIndex].Sg.Add(curSg.spawnGroupData);
                 view.Focus();
 
                 
 
             }
             GUI.backgroundColor = Color.red;
-            if (spawnSystemManger.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
+            if (spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
             {
                 FinishEdit(i);
 
@@ -69,7 +73,7 @@ public class SpawnClusterContainerrInspector : Editor
         GUI.backgroundColor = Color.white;
         if (GUILayout.Button("클러스터 추가"))
         {
-            spawnSystemManger.spawnClusters.Add(new SpawnClusterContainer.SpawnCluster());
+            spawnClusterContainer.spawnClusters.Add(new SpawnCluster());
         }
 
         //base.OnInspectorGUI();
@@ -80,12 +84,12 @@ public class SpawnClusterContainerrInspector : Editor
     {
         if(index >=0)
         {
-            spawnSystemManger.spawnClusters[index].isClick = false;
+            spawnClusterContainer.spawnClusters[index].isClick = false;
             curIndex = -1;
-
-            if(curSg.Sp.Count ==0)
+            Debug.Log(curSg.spawnGroupData.Sp);
+            if(curSg.spawnGroupData.Sp.Count ==0)
             {
-                spawnSystemManger.spawnClusters[index].Sg.Remove(curSg);
+                spawnClusterContainer.spawnClusters[index].Sg.Remove(curSg.spawnGroupData);
                 DestroyImmediate(curSg.gameObject);
                 curSg = null;
             }
@@ -99,7 +103,7 @@ public class SpawnClusterContainerrInspector : Editor
 
 
 
-        if (curIndex >= 0 && spawnSystemManger.spawnClusters.Count > 0)
+        if (curIndex >= 0 && spawnClusterContainer.spawnClusters.Count > 0)
         {
             HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
 
@@ -118,10 +122,10 @@ public class SpawnClusterContainerrInspector : Editor
                     GameObject go = new GameObject($"Point{pointIndex}");
                     go.transform.position = hit.point;
                     pointIndex++;
-                    SpawnPoint sp = go.AddComponent<SpawnPoint>();
+                    SpawnPointObj sp = go.AddComponent<SpawnPointObj>();
                     go.transform.SetParent(curSg.transform);
-                    curSg.Sp.Add(sp);
-
+                    sp.spawnPointData = new(curSg.spawnGroupData.sgId, go.transform.position);
+                    curSg.spawnGroupData.Sp.Add(sp.spawnPointData);
 
                 }
             }
@@ -156,4 +160,6 @@ public class SpawnClusterContainerrInspector : Editor
             serializedObject.ApplyModifiedProperties();
         }
     }
+
+
 }

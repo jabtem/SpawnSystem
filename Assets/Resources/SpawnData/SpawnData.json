@@ -1,0 +1,88 @@
+[
+  {
+    "Sg": [
+      {
+        "Sp": [
+          {
+            "spId": 0,
+            "sgId": 0,
+            "spawnPoint": {
+              "x": 4.394676,
+              "y": -8.452587,
+              "z": 0.5745518,
+              "normalized": {
+                "x": 0.460460842,
+                "y": -0.8856364,
+                "z": 0.0601997934,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.0
+              },
+              "magnitude": 9.544083,
+              "sqrMagnitude": 91.0895157
+            },
+            "radius": 0,
+            "isRandom": false
+          },
+          {
+            "spId": 0,
+            "sgId": 0,
+            "spawnPoint": {
+              "x": 1.91846514,
+              "y": -8.452587,
+              "z": 0.2540244,
+              "normalized": {
+                "x": 0.221243352,
+                "y": -0.9747786,
+                "z": 0.02929488,
+                "magnitude": 1.0,
+                "sqrMagnitude": 1.00000012
+              },
+              "magnitude": 8.671289,
+              "sqrMagnitude": 75.19127
+            },
+            "radius": 0,
+            "isRandom": false
+          },
+          {
+            "spId": 0,
+            "sgId": 0,
+            "spawnPoint": {
+              "x": 2.96,
+              "y": -8.452587,
+              "z": 2.1630075,
+              "normalized": {
+                "x": 0.321271777,
+                "y": -0.917424858,
+                "z": 0.234767988,
+                "normalized": {
+                  "x": 0.3212718,
+                  "y": -0.9174249,
+                  "z": 0.234768,
+                  "magnitude": 1.0,
+                  "sqrMagnitude": 1.00000012
+                },
+                "magnitude": 0.99999994,
+                "sqrMagnitude": 0.99999994
+              },
+              "magnitude": 9.213384,
+              "sqrMagnitude": 84.88643
+            },
+            "radius": 0,
+            "isRandom": false
+          }
+        ],
+        "sgId": 0,
+        "scId": 1020,
+        "monsterType": "",
+        "maxCount": 0
+      }
+    ],
+    "scId": 1020,
+    "explanation": "Test"
+  },
+  {
+    "Sg": [],
+    "scId": 2020,
+    "explanation": "Test2"
+  }
+]

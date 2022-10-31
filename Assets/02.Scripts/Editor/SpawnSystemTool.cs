@@ -6,68 +6,68 @@
 //using Newtonsoft.Json;
 //using UnityEngine.SceneManagement;
 
-//[System.Serializable]
-//public class SpawnCluster
-//{
-//    public List<SpawnGroup> Sg = new();
-//    //This ID
-//    //자기 자신 ID
-//    public int scId;
+////[System.Serializable]
+////public class SpawnCluster
+////{
+////    public List<SpawnGroup> Sg = new();
+////    //This ID
+////    //자기 자신 ID
+////    public int scId;
 
-//    //Explanation
-//    //클러스터에대한 부가설명
-//    public string explanation;
-
-
-//    //클러스터가 추가된 씬네임
-//    public string sceneName;
-
-//}
-
-//[System.Serializable]
-//public class SpawnGroup
-//{
-//    public List<SpawnPoint> Sp = new();
-//    //This ID
-//    public int sgId;
-//    //Parent ID
-//    public int scId;
-    
-//    public string monsterType;
-//    public int maxCount;
-//}
-
-//[System.Serializable]
-//public class SpawnPoint
-//{
-//    //This ID
-//    public int spId;
-    
-//    //Parent ID;
-//    public int sgId;
-
-//    //SpawnPoint
-//    public Vector3 spawnPoint;
+////    //Explanation
+////    //클러스터에대한 부가설명
+////    public string explanation;
 
 
-//    public int radius;
+////    //클러스터가 추가된 씬네임
+////    public string sceneName;
 
-//    public bool isRandom;
+////}
 
-//    public SpawnPoint(int _Spid, int _SgId, Vector3 point)
-//    {
-//        spId = _Spid;
-//        sgId = _SgId;
-//        spawnPoint = point;
-//    }
+////[System.Serializable]
+////public class SpawnGroup
+////{
+////    public List<SpawnPoint> Sp = new();
+////    //This ID
+////    public int sgId;
+////    //Parent ID
+////    public int scId;
 
-//}
+////    public string monsterType;
+////    public int maxCount;
+////}
+
+////[System.Serializable]
+////public class SpawnPoint
+////{
+////    //This ID
+////    public int spId;
+
+////    //Parent ID;
+////    public int sgId;
+
+////    //SpawnPoint
+////    public Vector3 spawnPoint;
+
+
+////    public int radius;
+
+////    public bool isRandom;
+
+////    public SpawnPoint(int _Spid, int _SgId, Vector3 point)
+////    {
+////        spId = _Spid;
+////        sgId = _SgId;
+////        spawnPoint = point;
+////    }
+
+////}
 
 //[System.Serializable]
 //public class SpwanSaveData
 //{
 //    //ID 중복검사는 Set으로 관리
-//    public List<SpawnCluster> Sc = new();
+//    public List<SpawnClusterContainer.SpawnCluster> Sc = new();
 //    //고유 id값 저장용
 //    public HashSet<int> uniqueScId = new();
 //    public HashSet<int> uniqueSgId = new();
@@ -95,7 +95,7 @@
 //    string curFocusFieldName = "";
 //    Scene activeScene;
 
-//    [MenuItem("Tools/SpawnData")]
+//    [MenuItem("Tools/SpawnDataTest")]
 //    public new static void Show()
 //    {
 //        SpawnSystemTool wnd = GetWindow<SpawnSystemTool>();
@@ -131,7 +131,7 @@
 //    private void OnGUI()
 //    {
 
-//        if(!ReferenceEquals(GUI.GetNameOfFocusedControl(),curFocusFieldName))
+//        if (!ReferenceEquals(GUI.GetNameOfFocusedControl(), curFocusFieldName))
 //        {
 //            curFocusFieldName = GUI.GetNameOfFocusedControl();
 //            Debug.Log(curFocusFieldName);
@@ -164,7 +164,7 @@
 //            {
 //                EditorGUILayout.HelpBox("스폰 클러스터 ID가 중복됩니다 다른 ID를 입력하세요", MessageType.Error);
 //            }
-            
+
 //            GUILayout.EndVertical();
 
 
@@ -177,10 +177,10 @@
 
 
 
-//            data.Sc[i].sceneName = activeScene.name;
+//            //data.Sc[i].sceneName = activeScene.name;
 
 
-//            if(GUILayout.Button("Remove"))
+//            if (GUILayout.Button("Remove"))
 //            {
 
 //                if (data.uniqueScId.Contains(data.Sc[i].scId))
@@ -195,16 +195,16 @@
 
 //        if (GUILayout.Button("Add Cluster"))
 //        {
-//            data.Sc.Add(new SpawnCluster());
+//            data.Sc.Add(new SpawnClusterContainer.SpawnCluster());
 //            //data.ScDic.Add(data.scIndex, new SpawnCluster());
 //            //data.ScDic[data.scIndex].scId = data.scIndex;
 //            //data.scIndex++;
 //        }
 
-//        if(GUILayout.Button("Json Save"))
+//        if (GUILayout.Button("Json Save"))
 //        {
 //            var save = JsonConvert.SerializeObject(data, Formatting.Indented);
-//            File.WriteAllText(path,save);
+//            File.WriteAllText(path, save);
 //            Debug.Log("Save Data!");
 //        }
 //    }
