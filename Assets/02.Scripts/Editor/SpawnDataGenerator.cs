@@ -51,7 +51,6 @@ public class SpawnDataGenerator : EditorWindow
             //{
             //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             //});
-            Debug.Log(save);
             File.WriteAllText(path, save);
             Debug.Log("Save Json!");
         }

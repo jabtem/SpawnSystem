@@ -337,7 +337,7 @@ MonoBehaviour:
       isRandom: 0
     sgId: 0
     scId: 1020
-    monsterType: 
+    monsterType: Cube
     maxCount: 0
 --- !u!1 &828452878
 GameObject:
@@ -621,11 +621,37 @@ MonoBehaviour:
       maxCount: 0
     scId: 1020
     explanation: Test
-    isClick: 0
   - Sg: []
     scId: 2020
     explanation: Test2
-    isClick: 0
+  spawnData:
+    spawnClusters:
+    - Sg:
+      - Sp:
+        - spId: 0
+          sgId: 0
+          spawnPoint: {x: 4.394676, y: -8.452587, z: 0.5745518}
+          radius: 0
+          isRandom: 0
+        - spId: 0
+          sgId: 0
+          spawnPoint: {x: 1.9184651, y: -8.452587, z: 0.2540244}
+          radius: 0
+          isRandom: 0
+        - spId: 0
+          sgId: 0
+          spawnPoint: {x: 2.96, y: -8.452587, z: 2.1630075}
+          radius: 0
+          isRandom: 0
+        sgId: 0
+        scId: 1020
+        monsterType: 
+        maxCount: 0
+      scId: 1020
+      explanation: Test
+    - Sg: []
+      scId: 2020
+      explanation: Test2
 --- !u!4 &1979328449
 Transform:
   m_ObjectHideFlags: 0
