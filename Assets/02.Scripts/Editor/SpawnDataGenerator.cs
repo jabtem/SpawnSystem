@@ -40,13 +40,18 @@ public class SpawnDataGenerator : EditorWindow
         if (spawnClusterContainer != null)
         {
 
+            spawnClusterContainer.spawnData.spawnClusters = spawnClusterContainer.spawnClusters;
 
-            //var save = JsonUtility.ToJson(spawnClusterContainer.spawnClusters, true);
+
+
+
+            var save = JsonUtility.ToJson(spawnClusterContainer.spawnData, true);
             //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented);
-            var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+            //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented, new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
+            Debug.Log(save);
             File.WriteAllText(path, save);
             Debug.Log("Save Json!");
         }

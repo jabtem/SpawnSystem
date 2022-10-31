@@ -21,6 +21,7 @@ public class SpawnCluster
 
 
     [JsonIgnore]
+    [System.NonSerialized]
     public bool isClick;
 }
 [System.Serializable]
@@ -67,6 +68,11 @@ public class SpawnPoint
     }
 
 }
+[System.Serializable]
+public class SpawnData
+{
+    public List<SpawnCluster> spawnClusters;
+}
 
 public class SpawnClusterContainer : MonoBehaviour
 { 
@@ -74,5 +80,7 @@ public class SpawnClusterContainer : MonoBehaviour
     public int sceneId;
 
     public List<SpawnCluster> spawnClusters;
+
+    public SpawnData spawnData;
 
 }
