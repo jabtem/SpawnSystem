@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+
 using UnityEngine.Networking;
 using Assets.Charon.CharonData;
 public class Spawner : MonoBehaviour
@@ -32,8 +33,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Debug.Log(data.GetSpawnData(0).ScId);
-
+        SpawnReqeust();
     }
 
     private void WebGlDataRead(string path)
@@ -54,13 +54,15 @@ public class Spawner : MonoBehaviour
         MemoryStream stream = new(uriData);
 
         data = new SpawnInfo(stream, SpawnInfo.Format.Json);
+
+
     }
 
     void SpawnReqeust()
     {
         foreach(var data in data.GetSpawnDatas())
         {
-
+            container.SpawnOrder(data.ScId, data.SgId, data.SpId);
         }
     }
 }

@@ -44,7 +44,6 @@ public class SpawnDataGenerator : EditorWindow
 
 
 
-
             var save = JsonUtility.ToJson(spawnClusterContainer.spawnData, true);
             //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented);
             //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented, new JsonSerializerSettings

@@ -164,14 +164,14 @@ namespace Assets.Charon.CharonData
 		private readonly int id;
 		private readonly int scId;
 		private readonly int sgId;
-		private readonly string spId;
+		private readonly int spId;
 
 		public int Id { get { return this.id; } }
 		public int ScId { get { return this.scId; } }
 		public int SgId { get { return this.sgId; } }
-		public string SpId { get { return this.spId; } }
+		public int SpId { get { return this.spId; } }
 
-		public SpawnData(int id, int scId, int sgId, string spId)
+		public SpawnData(int id, int scId, int sgId, int spId)
 		{
 			this.id = id;
 			this.scId = scId;
@@ -990,7 +990,7 @@ namespace Assets.Charon.CharonData
 				var id = GetAndCovertValue<int>(values, "Id");
 				var scId = GetAndCovertValue<int>(values, "ScId");
 				var sgId = GetAndCovertValue<int>(values, "SgId");
-				var spId = GetAndCovertValue<string>(values, "SpId");
+				var spId = GetAndCovertValue<int>(values, "SpId");
 
 				return new SpawnData(id, scId, sgId, spId);
 			}
@@ -1009,7 +1009,7 @@ namespace Assets.Charon.CharonData
 				var id = default(int);
 				var scId = default(int);
 				var sgId = default(int);
-				var spId = default(string);
+				var spId = default(int);
 #pragma warning restore 0168
 				this.ReadObjectBegin();
 				while (this.Node.Token != ReaderToken.EndOfObject)
@@ -1070,15 +1070,11 @@ namespace Assets.Charon.CharonData
 								}
 								case "SpId":
 								{
-									if (this.IsNull())
-									{
-										this.NextToken();
-										continue;
-									}
+									this.ThrowIfNull("value of Integer type", "SpId", "SpawnData");
 
 									this.ThrowIfNotValue();
 
-									spId = (string)this.Node.AsString;
+									spId = (int)this.Node.AsInt32;
 									this.NextToken();
 									break;
 								}

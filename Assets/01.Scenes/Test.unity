@@ -601,24 +601,24 @@ MonoBehaviour:
   spawnClusters:
   - Sg:
     - Sp:
-      - spId: 0
+      - spId: 1
         sgId: 0
         spawnPoint: {x: 4.394676, y: -8.452587, z: 0.5745518}
         radius: 0
         isRandom: 0
-      - spId: 0
+      - spId: 2
         sgId: 0
         spawnPoint: {x: 1.9184651, y: -8.452587, z: 0.2540244}
         radius: 0
         isRandom: 0
-      - spId: 0
+      - spId: 3
         sgId: 0
         spawnPoint: {x: 2.96, y: -8.452587, z: 2.1630075}
         radius: 0
         isRandom: 0
       sgId: 0
       scId: 1020
-      monsterType: 
+      monsterType: Cube
       maxCount: 0
     scId: 1020
     explanation: Test
@@ -629,24 +629,24 @@ MonoBehaviour:
     spawnClusters:
     - Sg:
       - Sp:
-        - spId: 0
+        - spId: 1
           sgId: 0
           spawnPoint: {x: 4.394676, y: -8.452587, z: 0.5745518}
           radius: 0
           isRandom: 0
-        - spId: 0
+        - spId: 2
           sgId: 0
           spawnPoint: {x: 1.9184651, y: -8.452587, z: 0.2540244}
           radius: 0
           isRandom: 0
-        - spId: 0
+        - spId: 3
           sgId: 0
           spawnPoint: {x: 2.96, y: -8.452587, z: 2.1630075}
           radius: 0
           isRandom: 0
         sgId: 0
         scId: 1020
-        monsterType: 
+        monsterType: Cube
         maxCount: 0
       scId: 1020
       explanation: Test
