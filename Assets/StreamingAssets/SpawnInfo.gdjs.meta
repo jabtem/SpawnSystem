@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: de1ec60b4d04a0245b250ee026a6ef99
+DefaultImporter:
+  externalObjects: {}
+  userData: '{"AssetGenerationPath": "Assets/02.Scripts/Charon/CharonData/GameData.asset",
+    "AutoGeneration": true, "CodeGenerationPath": "Assets/02.Scripts/Charon/CharonData/SpawnInfo.cs",
+    "DocumentClassName": "Document", "GameDataClassName": "SpawnInfo", "Generator":
+    1, "Indentation": 0, "LineEnding": 0, "Namespace": "Assets.Charon.CharonData",
+    "Options": 518, "ScriptingAssemblies": []}'
+  assetBundleName: 
+  assetBundleVariant: 

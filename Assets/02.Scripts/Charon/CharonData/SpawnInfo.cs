@@ -10,7 +10,7 @@
 
 // ReSharper disable All
 
-namespace Assets.Resources.CharonData
+namespace Assets.Charon.CharonData
 {
 	using System;
 	using System.Linq;
@@ -25,145 +25,7 @@ namespace Assets.Resources.CharonData
 	using System.Linq.Expressions;
 	using System.Xml;
 
-	/// <summary>
-	/// 몬스터 스폰 정보.
-	/// </summary>
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
-	public sealed partial class SpawnInfo : Document, IEquatable<SpawnInfo>, IComparable, IComparable<SpawnInfo>
-	{
-		private readonly int hashCode;
-		private readonly int id;
-		private readonly int scId;
-		private readonly int sgId;
-		private readonly int spId;
-		private readonly string monsterType;
-
-		/// <summary>
-		/// 스폰 클러스터 ID.
-		/// </summary>
-		public int Id { get { return this.id; } }
-		public int ScId { get { return this.scId; } }
-		public int SgId { get { return this.sgId; } }
-		public int SpId { get { return this.spId; } }
-		public string MonsterType { get { return this.monsterType; } }
-
-		public SpawnInfo(int id, int scId, int sgId, int spId, string monsterType)
-		{
-			this.id = id;
-			this.scId = scId;
-			this.sgId = sgId;
-			this.spId = spId;
-			this.monsterType = monsterType;
-			this.hashCode = this.ComputeHashCode();
-		}
-
-		protected internal override void Init(GameData gameData, string languageId)
-		{
-			if (gameData == null) throw new ArgumentNullException("gameData");
-			if (languageId == null) throw new ArgumentNullException("languageId");
-
-			this.OnBeforeInitialize();
-
-			this.SetLanguage(languageId);
-
-			this.OnInitialize();
-		}
-
-		protected internal override void SetLanguage(string languageId)
-		{
-			if (languageId == null) throw new ArgumentNullException("languageId");
-			this.OnSetLanguage(languageId);
-		}
-
-		protected internal override void Apply(GameData.Visitor visitor)
-		{
-			if (visitor == null) throw new ArgumentNullException("visitor");
-
-			visitor.Visit(this);
-
-		}
-
-		partial void OnBeforeInitialize();
-		partial void OnInitialize();
-		partial void OnSetLanguage(string languageId);
-		
-		public bool Equals(SpawnInfo other)
-		{
-			return this.Equals((object)other);
-		}
-
-		public override bool Equals(object value)
-		{
-			if (value is SpawnInfo == false)
-				return false;
-			else if (Object.ReferenceEquals(this, value))
-				return true;
-			else if (Object.ReferenceEquals(value, null))
-				return false;
-				
-			var other = (SpawnInfo)value;
-			return (this.GetHashCode() == other.GetHashCode()
-				&& AreEquals(this.id, other.id)
-				&& AreEquals(this.scId, other.scId)
-				&& AreEquals(this.sgId, other.sgId)
-				&& AreEquals(this.spId, other.spId)
-				&& AreEquals(this.monsterType, other.monsterType)
-			);
-		}
-
-		public override int GetHashCode()
-		{
-			return this.hashCode;
-		}
-
-		int IComparable.CompareTo(object obj)
-		{
-			return this.CompareTo(obj as SpawnInfo);
-		}
-
-		public int CompareTo(SpawnInfo other)
-		{
-			if (other == null)
-				return 1;
-			return this.Id.CompareTo(other.Id);
-		}
-
-		public static bool operator ==(SpawnInfo value1, SpawnInfo value2)
-		{
-			return Object.Equals(value1, value2);
-		}
-		public static bool operator !=(SpawnInfo value1, SpawnInfo value2)
-		{
-			return Object.Equals(value1, value2) == false;
-		}
-
-		private int ComputeHashCode()
-		{
-			return unchecked(this.GetType().Name.GetHashCode()
-				+ GetHashCodeFor(this.id)
-				+ GetHashCodeFor(this.scId)
-				+ GetHashCodeFor(this.sgId)
-				+ GetHashCodeFor(this.spId)
-				+ GetHashCodeFor(this.monsterType)
-			);
-		}
-
-		public override string ToString()
-		{
-			var sb = new System.Text.StringBuilder();
-				sb.Append("Id: ").Append(this.id).Append(", ");
-				sb.Append("Cluster Id: ").Append(this.scId).Append(", ");
-				sb.Append("Group Id: ").Append(this.sgId).Append(", ");
-				sb.Append("Point Id: ").Append(this.spId).Append(", ");
-				sb.Append("Monster Type: ").Append(this.monsterType).Append(", ");
-			if (sb.Length > 2)
-				sb.Length -= 2;
-
-			return sb.ToString();
-		}
-	}
-
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 	public sealed partial class ProjectSettings : Document, IEquatable<ProjectSettings>, IComparable, IComparable<ProjectSettings>
 	{
 		private readonly int hashCode;
@@ -189,7 +51,7 @@ namespace Assets.Resources.CharonData
 			this.hashCode = this.ComputeHashCode();
 		}
 
-		protected internal override void Init(GameData gameData, string languageId)
+		protected internal override void Init(SpawnInfo gameData, string languageId)
 		{
 			if (gameData == null) throw new ArgumentNullException("gameData");
 			if (languageId == null) throw new ArgumentNullException("languageId");
@@ -207,7 +69,7 @@ namespace Assets.Resources.CharonData
 			this.OnSetLanguage(languageId);
 		}
 
-		protected internal override void Apply(GameData.Visitor visitor)
+		protected internal override void Apply(SpawnInfo.Visitor visitor)
 		{
 			if (visitor == null) throw new ArgumentNullException("visitor");
 
@@ -295,21 +157,147 @@ namespace Assets.Resources.CharonData
 		}
 	}
 
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
+	public sealed partial class SpawnData : Document, IEquatable<SpawnData>, IComparable, IComparable<SpawnData>
+	{
+		private readonly int hashCode;
+		private readonly int id;
+		private readonly int scId;
+		private readonly int sgId;
+		private readonly string spId;
+
+		public int Id { get { return this.id; } }
+		public int ScId { get { return this.scId; } }
+		public int SgId { get { return this.sgId; } }
+		public string SpId { get { return this.spId; } }
+
+		public SpawnData(int id, int scId, int sgId, string spId)
+		{
+			this.id = id;
+			this.scId = scId;
+			this.sgId = sgId;
+			this.spId = spId;
+			this.hashCode = this.ComputeHashCode();
+		}
+
+		protected internal override void Init(SpawnInfo gameData, string languageId)
+		{
+			if (gameData == null) throw new ArgumentNullException("gameData");
+			if (languageId == null) throw new ArgumentNullException("languageId");
+
+			this.OnBeforeInitialize();
+
+			this.SetLanguage(languageId);
+
+			this.OnInitialize();
+		}
+
+		protected internal override void SetLanguage(string languageId)
+		{
+			if (languageId == null) throw new ArgumentNullException("languageId");
+			this.OnSetLanguage(languageId);
+		}
+
+		protected internal override void Apply(SpawnInfo.Visitor visitor)
+		{
+			if (visitor == null) throw new ArgumentNullException("visitor");
+
+			visitor.Visit(this);
+
+		}
+
+		partial void OnBeforeInitialize();
+		partial void OnInitialize();
+		partial void OnSetLanguage(string languageId);
+		
+		public bool Equals(SpawnData other)
+		{
+			return this.Equals((object)other);
+		}
+
+		public override bool Equals(object value)
+		{
+			if (value is SpawnData == false)
+				return false;
+			else if (Object.ReferenceEquals(this, value))
+				return true;
+			else if (Object.ReferenceEquals(value, null))
+				return false;
+				
+			var other = (SpawnData)value;
+			return (this.GetHashCode() == other.GetHashCode()
+				&& AreEquals(this.id, other.id)
+				&& AreEquals(this.scId, other.scId)
+				&& AreEquals(this.sgId, other.sgId)
+				&& AreEquals(this.spId, other.spId)
+			);
+		}
+
+		public override int GetHashCode()
+		{
+			return this.hashCode;
+		}
+
+		int IComparable.CompareTo(object obj)
+		{
+			return this.CompareTo(obj as SpawnData);
+		}
+
+		public int CompareTo(SpawnData other)
+		{
+			if (other == null)
+				return 1;
+			return this.Id.CompareTo(other.Id);
+		}
+
+		public static bool operator ==(SpawnData value1, SpawnData value2)
+		{
+			return Object.Equals(value1, value2);
+		}
+		public static bool operator !=(SpawnData value1, SpawnData value2)
+		{
+			return Object.Equals(value1, value2) == false;
+		}
+
+		private int ComputeHashCode()
+		{
+			return unchecked(this.GetType().Name.GetHashCode()
+				+ GetHashCodeFor(this.id)
+				+ GetHashCodeFor(this.scId)
+				+ GetHashCodeFor(this.sgId)
+				+ GetHashCodeFor(this.spId)
+			);
+		}
+
+		public override string ToString()
+		{
+			var sb = new System.Text.StringBuilder();
+				sb.Append("Id: ").Append(this.id).Append(", ");
+				sb.Append("Cluster Id: ").Append(this.scId).Append(", ");
+				sb.Append("Group Id: ").Append(this.sgId).Append(", ");
+				sb.Append("Point Id: ").Append(this.spId).Append(", ");
+			if (sb.Length > 2)
+				sb.Length -= 2;
+
+			return sb.ToString();
+		}
+	}
 
 
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
-	public partial class GameData
+
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
+	public partial class SpawnInfo
 	{
 		public const string GeneratorName = "Charon";
 		public const string GeneratorVersion = "2020.1.1.0";
 
 		#region Storage fields
-		private ReadOnlyList<SpawnInfo> rootSpawnInfo;
-		private ReadOnlyList<SpawnInfo> allSpawnInfo;
-		private ReadOnlyDictionary<int, SpawnInfo> allSpawnInfoById;
 		private ReadOnlyList<ProjectSettings> rootProjectSettings;
 		private ReadOnlyList<ProjectSettings> allProjectSettings;
 		private ReadOnlyDictionary<string, ProjectSettings> allProjectSettingsById;
+		private ReadOnlyList<SpawnData> rootSpawnData;
+		private ReadOnlyList<SpawnData> allSpawnData;
+		private ReadOnlyDictionary<int, SpawnData> allSpawnDataById;
 		#endregion
 
 		private ReadOnlyCollection<String> languages = new ReadOnlyCollection<String>(new String[] { "en-US" });
@@ -322,7 +310,7 @@ namespace Assets.Resources.CharonData
 		public Func<string, object, Document> FindDocument { get; private set;}
 
 
-		public GameData(Stream data, Format format, Stream[] patches = null, Encoding encoding = null, bool leaveOpen = false)
+		public SpawnInfo(Stream data, Format format, Stream[] patches = null, Encoding encoding = null, bool leaveOpen = false)
 		{
 			if (data == null) throw new ArgumentNullException("data");
 
@@ -347,13 +335,13 @@ namespace Assets.Resources.CharonData
 
 		private void Initialize()
 		{
-			if (this.rootSpawnInfo == null) this.rootSpawnInfo = ReadOnlyList<SpawnInfo>.Empty;
 			if (this.rootProjectSettings == null) this.rootProjectSettings = ReadOnlyList<ProjectSettings>.Empty;
+			if (this.rootSpawnData == null) this.rootSpawnData = ReadOnlyList<SpawnData>.Empty;
 
 			this.FindAllDocuments();
 
-			this.allSpawnInfoById = ToDictionarySkippingNullKeys(this.allSpawnInfo, document => document.Id);
 			this.allProjectSettingsById = ToDictionarySkippingNullKeys(this.allProjectSettings, document => document.Id);
+			this.allSpawnDataById = ToDictionarySkippingNullKeys(this.allSpawnData, document => document.Id);
 
 			this.BeforeInitialize();
 
@@ -369,43 +357,6 @@ namespace Assets.Resources.CharonData
 		partial void OnInitialize();
 
 		#region Accessors
-		// SpawnInfo -> Id
-		public SpawnInfo GetSpawnInfo(int id)
-		{
-			ThrowIfNull(id, "id");
-
-			var value = default(SpawnInfo);
-			if (this.allSpawnInfoById.TryGetValue(id, out value) == false)
-				throw new System.ArgumentException(string.Format("Unable find SpawnInfo with Id '{0}'.", id) ,"id");
-			return value;
-		}
-		public bool HasSpawnInfo(int id)
-		{
-			ThrowIfNull(id, "id");
-
-			return this.allSpawnInfoById.ContainsKey(id);
-		}
-		public SpawnInfo FindSpawnInfo(int id)
-		{
-			ThrowIfNull(id, "id");
-
-			var value = default(SpawnInfo);
-			this.allSpawnInfoById.TryGetValue(id, out value);
-			return value;
-		}
-		public bool TryGetSpawnInfo(int id, out SpawnInfo value)
-		{
-			ThrowIfNull(id, "id");
-
-			return this.allSpawnInfoById.TryGetValue(id, out value);
-		}
-		public ReadOnlyList<SpawnInfo> GetSpawnInfos(bool onlyRoot = false)
-		{
-			if(onlyRoot)
-				return this.rootSpawnInfo;
-			else
-				return this.allSpawnInfo;
-		}
 		// ProjectSettings -> Id
 		public ProjectSettings GetProjectSettings(string id)
 		{
@@ -460,6 +411,43 @@ namespace Assets.Resources.CharonData
 				}
 			}
 		}
+		// SpawnData -> Id
+		public SpawnData GetSpawnData(int id)
+		{
+			ThrowIfNull(id, "id");
+
+			var value = default(SpawnData);
+			if (this.allSpawnDataById.TryGetValue(id, out value) == false)
+				throw new System.ArgumentException(string.Format("Unable find SpawnData with Id '{0}'.", id) ,"id");
+			return value;
+		}
+		public bool HasSpawnData(int id)
+		{
+			ThrowIfNull(id, "id");
+
+			return this.allSpawnDataById.ContainsKey(id);
+		}
+		public SpawnData FindSpawnData(int id)
+		{
+			ThrowIfNull(id, "id");
+
+			var value = default(SpawnData);
+			this.allSpawnDataById.TryGetValue(id, out value);
+			return value;
+		}
+		public bool TryGetSpawnData(int id, out SpawnData value)
+		{
+			ThrowIfNull(id, "id");
+
+			return this.allSpawnDataById.TryGetValue(id, out value);
+		}
+		public ReadOnlyList<SpawnData> GetSpawnDatas(bool onlyRoot = false)
+		{
+			if(onlyRoot)
+				return this.rootSpawnData;
+			else
+				return this.allSpawnData;
+		}
 		#endregion
 
 		public IEnumerable<Document> GetAllDocuments()
@@ -482,10 +470,10 @@ namespace Assets.Resources.CharonData
 #pragma warning disable 1522 // Empty switch block
 			switch (entityId)
 			{
-				case "SpawnInfo":
-				case "4f7c5f631883693f0600002c": return this.GetSpawnInfo((int)(id is int ? id : ChangeType(id, typeof(int), System.Globalization.CultureInfo.InvariantCulture)));
 				case "ProjectSettings":
 				case "55a4f32faca22e191098f3d9": return this.GetProjectSettings((string)(id is string ? id : ChangeType(id, typeof(string), System.Globalization.CultureInfo.InvariantCulture)));
+				case "SpawnData":
+				case "9a7660632483693f0100004c": return this.GetSpawnData((int)(id is int ? id : ChangeType(id, typeof(int), System.Globalization.CultureInfo.InvariantCulture)));
 			}
 #pragma warning restore 1522
 			throw new System.ArgumentException(string.Format("Unable find Entity with id '{0}'.", entityId) ,"entityId");
@@ -495,13 +483,13 @@ namespace Assets.Resources.CharonData
 		{
 			var i = 0;
 			var end = 0;
-			for (i = 0, end = this.allSpawnInfo.Count; i < end; i++)
-			{
-				yield return this.allSpawnInfo[i];
-			}
 			for (i = 0, end = this.allProjectSettings.Count; i < end; i++)
 			{
 				yield return this.allProjectSettings[i];
+			}
+			for (i = 0, end = this.allSpawnData.Count; i < end; i++)
+			{
+				yield return this.allSpawnData[i];
 			}
 			yield break;
 		}
@@ -510,13 +498,13 @@ namespace Assets.Resources.CharonData
 		{
 			var i = 0;
 			var end = 0;
-			for (i = 0, end = this.rootSpawnInfo.Count; i < end; i++)
-			{
-				yield return this.rootSpawnInfo[i];
-			}
 			for (i = 0, end = this.rootProjectSettings.Count; i < end; i++)
 			{
 				yield return this.rootProjectSettings[i];
+			}
+			for (i = 0, end = this.rootSpawnData.Count; i < end; i++)
+			{
+				yield return this.rootSpawnData[i];
 			}
 
 			yield break;
@@ -584,17 +572,6 @@ namespace Assets.Resources.CharonData
 			this.ApplyVisitor(findingVisitor);
 
 
-			if (findingVisitor.AllSpawnInfo != null)
-			{
-				var list = findingVisitor.AllSpawnInfo;
-				list.Sort();
-				this.allSpawnInfo = new ReadOnlyList<SpawnInfo>(list);
-			}
-			else
-			{
-				this.allSpawnInfo = ReadOnlyList<SpawnInfo>.Empty;
-			}
-
 			if (findingVisitor.AllProjectSettings != null)
 			{
 				var list = findingVisitor.AllProjectSettings;
@@ -605,36 +582,47 @@ namespace Assets.Resources.CharonData
 			{
 				this.allProjectSettings = ReadOnlyList<ProjectSettings>.Empty;
 			}
+
+			if (findingVisitor.AllSpawnData != null)
+			{
+				var list = findingVisitor.AllSpawnData;
+				list.Sort();
+				this.allSpawnData = new ReadOnlyList<SpawnData>(list);
+			}
+			else
+			{
+				this.allSpawnData = ReadOnlyList<SpawnData>.Empty;
+			}
 		}
 
 		public class Visitor
 		{
-			public virtual void Visit(SpawnInfo value)
+			public virtual void Visit(ProjectSettings value)
 			{
 			}
-			public virtual void Visit(ProjectSettings value)
+			public virtual void Visit(SpawnData value)
 			{
 			}
 		}
 
 		private class FindingVisitor : Visitor
 		{
-			public List<SpawnInfo> AllSpawnInfo;
 			public List<ProjectSettings> AllProjectSettings;
+			public List<SpawnData> AllSpawnData;
 		
-			public override void Visit(SpawnInfo value) 
-			{ 
-				if (this.AllSpawnInfo == null)
-					this.AllSpawnInfo = new List<SpawnInfo>(6);
-
-				this.AllSpawnInfo.Add(value); 
-			}
 			public override void Visit(ProjectSettings value) 
 			{ 
 				if (this.AllProjectSettings == null)
 					this.AllProjectSettings = new List<ProjectSettings>(50);
 
 				this.AllProjectSettings.Add(value); 
+			}
+			public override void Visit(SpawnData value) 
+			{ 
+				if (this.AllSpawnData == null)
+					this.AllSpawnData = new List<SpawnData>(6);
+
+				this.AllSpawnData.Add(value); 
 			}
 		}
 		#endregion
@@ -667,7 +655,7 @@ namespace Assets.Resources.CharonData
 
 			public abstract bool NextToken();
 
-			public void ReadGameData(GameData gameData, Dictionary<string, object> patch = null)
+			public void ReadGameData(SpawnInfo gameData, Dictionary<string, object> patch = null)
 			{
 				this.ReadObjectBegin();
 				while(this.Node.Token != ReaderToken.EndOfObject)
@@ -690,16 +678,16 @@ namespace Assets.Resources.CharonData
 									case 9:
 										switch(collectionName)
 										{
-											case "SpawnInfo":
+											case "SpawnData":
 											{
 												if (this.IsNull())
 												{
 													this.NextToken();
 													break;
 												}
-												var spawnInfoPatch = GetDocumentCollection(collectionPatch, "SpawnInfo") ?? GetDocumentCollection(collectionPatch, "4f7c5f631883693f0600002c");
+												var spawnDataPatch = GetDocumentCollection(collectionPatch, "SpawnData") ?? GetDocumentCollection(collectionPatch, "9a7660632483693f0100004c");
 
-												gameData.rootSpawnInfo = this.ReadSpawnInfoCollection(spawnInfoPatch, 1, isRootCollection: true);
+												gameData.rootSpawnData = this.ReadSpawnDataCollection(spawnDataPatch, 1, isRootCollection: true);
 												break;
 											}
 											default:
@@ -765,186 +753,6 @@ namespace Assets.Resources.CharonData
 
 						gameData.languages = new ReadOnlyCollection<String>(languages);
 				}
-			}
-
-			private ReadOnlyList<SpawnInfo> ReadSpawnInfoCollection(Dictionary<string, object> collectionPatch = null, int capacity = 0, bool isRootCollection = false)
-			{
-				var collection = default(List<SpawnInfo>);
-				this.ReadArrayBegin();
-				while (this.Node.Token != ReaderToken.EndOfArray)
-				{
-					if (this.IsNull())
-					{
-						this.NextToken();
-						continue;
-					}
-
-					var value = this.ReadSpawnInfo(collectionPatch);
-					if (collection == null) { collection = new List<SpawnInfo>(capacity > 0 ? capacity : 10); }
-
-					collection.Add(value);
-				}
-				this.ReadArrayEnd();
-				if (collectionPatch != null)
-				{
-					PatchCollection<int, SpawnInfo>(collection, collectionPatch, d => CreateSpawnInfo(d), d => d.Id, isRootCollection);
-				}
-
-				return ReadOnlyList<SpawnInfo>.Create(collection);
-			}
-			private SpawnInfo CreateSpawnInfo(Dictionary<string, object> values)
-			{
-				if (values == null)
-				{
-					return null;
-				}
-
-				var id = GetAndCovertValue<int>(values, "Id");
-				var scId = GetAndCovertValue<int>(values, "ScId");
-				var sgId = GetAndCovertValue<int>(values, "SgId");
-				var spId = GetAndCovertValue<int>(values, "SpId");
-				var monsterType = GetAndCovertValue<string>(values, "MonsterType");
-
-				return new SpawnInfo(id, scId, sgId, spId, monsterType);
-			}
-			private SpawnInfo ReadSpawnInfo(Dictionary<string, object> collectionOrDocumentPatch = null)
-			{
-				var documentPatch = default(Dictionary<string, object>);
-
-				// if patch douments contains 'Id' property then is is a document patch. If not then it is a collection of patches by document id
-				if (collectionOrDocumentPatch != null && collectionOrDocumentPatch.ContainsKey("Id"))
-				{
-					documentPatch = collectionOrDocumentPatch;
-					collectionOrDocumentPatch = null;
-				}
-
-#pragma warning disable 0168 // The variable is declared but never used
-				var id = default(int);
-				var scId = default(int);
-				var sgId = default(int);
-				var spId = default(int);
-				var monsterType = default(string);
-#pragma warning restore 0168
-				this.ReadObjectBegin();
-				while (this.Node.Token != ReaderToken.EndOfObject)
-				{
-					var attributeName = this.ReadMember();
-					switch (attributeName.Length)
-					{
-						case 2:
-						{
-							switch (attributeName)
-							{
-								case "Id":
-								{
-									this.ThrowIfNull("value of Integer type", "Id", "SpawnInfo");
-
-									this.ThrowIfNotValue();
-
-									id = (int)this.Node.AsInt32;
-									this.NextToken();
-
-									if (collectionOrDocumentPatch != null)
-									{
-										documentPatch = GetDocument(collectionOrDocumentPatch, Convert.ToString(id, FormatProvider));
-									}
-									break;
-								}
-								default:
-								{
-									this.ReadAny();
-									break;
-								}
-							}
-							break;
-						}
-						case 4:
-						{
-							switch (attributeName)
-							{
-								case "ScId":
-								{
-									this.ThrowIfNull("value of Integer type", "ScId", "SpawnInfo");
-
-									this.ThrowIfNotValue();
-
-									scId = (int)this.Node.AsInt32;
-									this.NextToken();
-									break;
-								}
-								case "SgId":
-								{
-									this.ThrowIfNull("value of Integer type", "SgId", "SpawnInfo");
-
-									this.ThrowIfNotValue();
-
-									sgId = (int)this.Node.AsInt32;
-									this.NextToken();
-									break;
-								}
-								case "SpId":
-								{
-									this.ThrowIfNull("value of Integer type", "SpId", "SpawnInfo");
-
-									this.ThrowIfNotValue();
-
-									spId = (int)this.Node.AsInt32;
-									this.NextToken();
-									break;
-								}
-								default:
-								{
-									this.ReadAny();
-									break;
-								}
-							}
-							break;
-						}
-						case 11:
-						{
-							switch (attributeName)
-							{
-								case "MonsterType":
-								{
-									if (this.IsNull())
-									{
-										this.NextToken();
-										continue;
-									}
-
-									this.ThrowIfNotValue();
-
-									monsterType = (string)this.Node.AsString;
-									this.NextToken();
-									break;
-								}
-								default:
-								{
-									this.ReadAny();
-									break;
-								}
-							}
-							break;
-						}
-						default:
-						{
-							this.ReadAny();
-							break;
-						}
-					}
-				}
-				this.ReadObjectEnd();
-
-				if (documentPatch != null && documentPatch.Count > 1)
-				{
-					PatchValue(documentPatch, "Id", ref id);
-					PatchValue(documentPatch, "ScId", ref scId);
-					PatchValue(documentPatch, "SgId", ref sgId);
-					PatchValue(documentPatch, "SpId", ref spId);
-					PatchValue(documentPatch, "MonsterType", ref monsterType);
-				}
-
-				return new SpawnInfo(id, scId, sgId, spId, monsterType);
 			}
 
 			private ReadOnlyList<ProjectSettings> ReadProjectSettingsCollection(Dictionary<string, object> collectionPatch = null, int capacity = 0, bool isRootCollection = false)
@@ -1145,6 +953,161 @@ namespace Assets.Resources.CharonData
 				}
 
 				return new ProjectSettings(id, name, primaryLanguage, languages, copyright);
+			}
+
+			private ReadOnlyList<SpawnData> ReadSpawnDataCollection(Dictionary<string, object> collectionPatch = null, int capacity = 0, bool isRootCollection = false)
+			{
+				var collection = default(List<SpawnData>);
+				this.ReadArrayBegin();
+				while (this.Node.Token != ReaderToken.EndOfArray)
+				{
+					if (this.IsNull())
+					{
+						this.NextToken();
+						continue;
+					}
+
+					var value = this.ReadSpawnData(collectionPatch);
+					if (collection == null) { collection = new List<SpawnData>(capacity > 0 ? capacity : 10); }
+
+					collection.Add(value);
+				}
+				this.ReadArrayEnd();
+				if (collectionPatch != null)
+				{
+					PatchCollection<int, SpawnData>(collection, collectionPatch, d => CreateSpawnData(d), d => d.Id, isRootCollection);
+				}
+
+				return ReadOnlyList<SpawnData>.Create(collection);
+			}
+			private SpawnData CreateSpawnData(Dictionary<string, object> values)
+			{
+				if (values == null)
+				{
+					return null;
+				}
+
+				var id = GetAndCovertValue<int>(values, "Id");
+				var scId = GetAndCovertValue<int>(values, "ScId");
+				var sgId = GetAndCovertValue<int>(values, "SgId");
+				var spId = GetAndCovertValue<string>(values, "SpId");
+
+				return new SpawnData(id, scId, sgId, spId);
+			}
+			private SpawnData ReadSpawnData(Dictionary<string, object> collectionOrDocumentPatch = null)
+			{
+				var documentPatch = default(Dictionary<string, object>);
+
+				// if patch douments contains 'Id' property then is is a document patch. If not then it is a collection of patches by document id
+				if (collectionOrDocumentPatch != null && collectionOrDocumentPatch.ContainsKey("Id"))
+				{
+					documentPatch = collectionOrDocumentPatch;
+					collectionOrDocumentPatch = null;
+				}
+
+#pragma warning disable 0168 // The variable is declared but never used
+				var id = default(int);
+				var scId = default(int);
+				var sgId = default(int);
+				var spId = default(string);
+#pragma warning restore 0168
+				this.ReadObjectBegin();
+				while (this.Node.Token != ReaderToken.EndOfObject)
+				{
+					var attributeName = this.ReadMember();
+					switch (attributeName.Length)
+					{
+						case 2:
+						{
+							switch (attributeName)
+							{
+								case "Id":
+								{
+									this.ThrowIfNull("value of Integer type", "Id", "SpawnData");
+
+									this.ThrowIfNotValue();
+
+									id = (int)this.Node.AsInt32;
+									this.NextToken();
+
+									if (collectionOrDocumentPatch != null)
+									{
+										documentPatch = GetDocument(collectionOrDocumentPatch, Convert.ToString(id, FormatProvider));
+									}
+									break;
+								}
+								default:
+								{
+									this.ReadAny();
+									break;
+								}
+							}
+							break;
+						}
+						case 4:
+						{
+							switch (attributeName)
+							{
+								case "ScId":
+								{
+									this.ThrowIfNull("value of Integer type", "ScId", "SpawnData");
+
+									this.ThrowIfNotValue();
+
+									scId = (int)this.Node.AsInt32;
+									this.NextToken();
+									break;
+								}
+								case "SgId":
+								{
+									this.ThrowIfNull("value of Integer type", "SgId", "SpawnData");
+
+									this.ThrowIfNotValue();
+
+									sgId = (int)this.Node.AsInt32;
+									this.NextToken();
+									break;
+								}
+								case "SpId":
+								{
+									if (this.IsNull())
+									{
+										this.NextToken();
+										continue;
+									}
+
+									this.ThrowIfNotValue();
+
+									spId = (string)this.Node.AsString;
+									this.NextToken();
+									break;
+								}
+								default:
+								{
+									this.ReadAny();
+									break;
+								}
+							}
+							break;
+						}
+						default:
+						{
+							this.ReadAny();
+							break;
+						}
+					}
+				}
+				this.ReadObjectEnd();
+
+				if (documentPatch != null && documentPatch.Count > 1)
+				{
+					PatchValue(documentPatch, "Id", ref id);
+					PatchValue(documentPatch, "ScId", ref scId);
+					PatchValue(documentPatch, "SgId", ref sgId);
+					PatchValue(documentPatch, "SpId", ref spId);
+				}
+
+				return new SpawnData(id, scId, sgId, spId);
 			}
 			public Dictionary<string, object> ReadDocument()
 			{
@@ -2914,7 +2877,7 @@ namespace Assets.Resources.CharonData
 		#endregion
 
 		#region Serialization: JSON
-		private void ReadJson(GameData gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
+		private void ReadJson(SpawnInfo gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
 		{
 			if (gameData == null) throw new ArgumentNullException("gameData");
 			if (data == null) throw new ArgumentNullException("data");
@@ -4016,7 +3979,7 @@ namespace Assets.Resources.CharonData
 		#endregion
 
 		#region Serialization: Message Pack
-		private void ReadMessagePack(GameData gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
+		private void ReadMessagePack(SpawnInfo gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
 		{
 			if (gameData == null) throw new ArgumentNullException("gameData");
 			if (data == null) throw new ArgumentNullException("data");
@@ -4734,7 +4697,7 @@ namespace Assets.Resources.CharonData
 		#endregion
 
 		#region Serialization: BSON
-		private void ReadBson(GameData gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
+		private void ReadBson(SpawnInfo gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
 		{
 			if (gameData == null) throw new ArgumentNullException("gameData");
 			if (data == null) throw new ArgumentNullException("data");
@@ -5360,7 +5323,7 @@ namespace Assets.Resources.CharonData
 		#endregion
 
 		#region Serialization: XML
-		private void ReadXml(GameData gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
+		private void ReadXml(SpawnInfo gameData, Stream data, Stream[] patches, Encoding encoding, bool leaveOpen)
 		{
 			if (gameData == null) throw new ArgumentNullException("gameData");
 			if (data == null) throw new ArgumentNullException("data");
@@ -5606,7 +5569,7 @@ namespace Assets.Resources.CharonData
 }
 
 #pragma warning disable 0660, 0661
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 	public abstract partial class Document
 	{
 #pragma warning restore 0660, 0661
@@ -5625,9 +5588,9 @@ namespace Assets.Resources.CharonData
 			return Object.Equals(value1, value2) == false;
 		}
 
-		protected internal abstract void Apply(GameData.Visitor visitor);
+		protected internal abstract void Apply(SpawnInfo.Visitor visitor);
 
-		protected internal abstract void Init(GameData gameData, string languageId);
+		protected internal abstract void Init(SpawnInfo gameData, string languageId);
 
 		protected internal abstract void SetLanguage(string languageId);
 
@@ -5695,7 +5658,7 @@ namespace Assets.Resources.CharonData
 			return hashCode;
 		}
 	}
-		[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+		[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 		public sealed partial class DocumentReference<T> where T : Document
 		{	
 			[NonSerialized]
@@ -5777,7 +5740,7 @@ namespace Assets.Resources.CharonData
 			}
 		}
 
-		[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+		[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 		public sealed partial class LocalizedString : IDictionary<string, string>
 		{
 			private static readonly string[] DefaultLanguageIds = new string[] { "en-US" };
@@ -6011,7 +5974,7 @@ namespace Assets.Resources.CharonData
 			}
 		}
 		
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 	public class ReadOnlyList<T> : IList<T>
 	{
 		public static readonly ReadOnlyList<T> Empty = new ReadOnlyList<T>();
@@ -6156,7 +6119,7 @@ namespace Assets.Resources.CharonData
 		}
 	}
 
-	[GeneratedCode(GameData.GeneratorName, GameData.GeneratorVersion)]
+	[GeneratedCode(SpawnInfo.GeneratorName, SpawnInfo.GeneratorVersion)]
 	public class ReadOnlyDictionary<KeyT, ValueT> : IDictionary<KeyT, ValueT>
 	{
 		public static readonly ReadOnlyDictionary<KeyT, ValueT> Empty = new ReadOnlyDictionary<KeyT, ValueT>();

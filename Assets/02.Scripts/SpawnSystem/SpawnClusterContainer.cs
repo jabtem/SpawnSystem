@@ -74,6 +74,7 @@ public class SpawnData
     public List<SpawnCluster> spawnClusters;
 }
 
+
 public class SpawnClusterContainer : MonoBehaviour
 { 
     //각각 ID와 합쳐질 씬ID , 씬ID + 클러스터ID = JSON에 저장될 클러스터 ID
@@ -83,4 +84,12 @@ public class SpawnClusterContainer : MonoBehaviour
 
     public SpawnData spawnData;
 
+
+    public void SpawnOrder(int cid,int gid, int pid)
+    {
+        foreach(var cluster in spawnClusters)
+        {
+
+        }
+    }
 }
