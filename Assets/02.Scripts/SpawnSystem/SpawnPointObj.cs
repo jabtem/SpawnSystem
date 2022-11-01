@@ -12,7 +12,7 @@ public class SpawnPointObj : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, 1f);
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
 
     }
 

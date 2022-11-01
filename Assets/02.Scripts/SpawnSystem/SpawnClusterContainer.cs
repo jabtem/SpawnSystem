@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
-using UnityEngine.AddressableAssets;
+
 [System.Serializable]
 public class SpawnCluster
 {
@@ -84,45 +84,9 @@ public class SpawnClusterContainer : MonoBehaviour
     public SpawnData spawnData;
 
 
-    public void SpawnOrder(int cid,int gid, int pid)
-    {
-        foreach(var cluster in spawnClusters)
-        {
-            if(cluster.scId == cid)
-            {
-                foreach(var group in cluster.Sg)
-                {
-                    if (group.sgId == gid)
-                    {
-                        foreach (var point in group.Sp)
-                        {
-                            if(point.spId == pid)
-                            {
-                                SpawnMonster(group.monsterType, point.spawnPoint);
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
 
 
-    public void SpawnMonster(string type, Vector3 pos)
-    {
-        StartCoroutine(CoSpawnMonster(type, pos));
-    }
 
-    IEnumerator CoSpawnMonster(string type, Vector3 pos)
-    {
-        var handle = Addressables.InstantiateAsync(type);
-        handle.Completed += (data) =>
-        {
-            data.Result.transform.position = pos;
-        };
 
-        yield return handle;
-    }
 }
