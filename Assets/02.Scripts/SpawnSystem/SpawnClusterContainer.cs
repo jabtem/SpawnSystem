@@ -6,8 +6,11 @@ using Newtonsoft.Json;
 [System.Serializable]
 public class SpawnCluster
 {
-    [Header("스폰 그룹")]
+    //[HideInInspector]
     public List<SpawnGroup> Sg = new();
+    [Header("스폰 그룹")]
+    public List<SpawnGroupObj> SgObj = new();
+
     //This ID
     //자기 자신 ID
     [Header("스폰 ID")]
@@ -19,14 +22,25 @@ public class SpawnCluster
     public string explanation;
 
 
+    //JsonConvet Ignore
     [JsonIgnore]
+    //JsonUtility Ignore
     [System.NonSerialized]
     public bool isClick;
+
+
+    [HideInInspector]
+    public GameObject clusterObj;
 }
 [System.Serializable]
 public class SpawnGroup
 {
+    //[HideInInspector]
     public List<SpawnPoint> Sp = new();
+
+    [Header("스폰 포인트")]
+    public List<SpawnPointObj> SpObj = new();
+
     //This ID
     public int sgId;
     //Parent ID
@@ -35,6 +49,8 @@ public class SpawnGroup
     public string monsterType;
 
     public int maxCount;
+
+    public bool spawnRandom;
 
     public SpawnGroup(int _scid)
     {
@@ -75,8 +91,24 @@ public class SpawnData
 
 
 public class SpawnClusterContainer : MonoBehaviour
-{ 
+{
     //각각 ID와 합쳐질 씬ID , 씬ID + 클러스터ID = JSON에 저장될 클러스터 ID
+
+    SpawnClusterContainer()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public static SpawnClusterContainer Instance
+    {
+        get => instance;
+    }
+
+    static SpawnClusterContainer instance;
+
     public int sceneId;
 
     public List<SpawnCluster> spawnClusters;
@@ -84,9 +116,21 @@ public class SpawnClusterContainer : MonoBehaviour
     public SpawnData spawnData;
 
 
+    public void DataRefresh()
+    {
+        foreach (var cluster in spawnClusters)
+        {
+            for(int i= 0; i< cluster.Sg.Count; ++i)
+            {
+                cluster.SgObj[i].spawnGroupData.scId = cluster.scId;
 
-
-
-
-
+                cluster.Sg[i] = cluster.SgObj[i].spawnGroupData;
+                for(int j = 0; j < cluster.Sg[i].Sp.Count; ++j)
+                {
+                    cluster.Sg[i].SpObj[j].spawnPointData.sgId = cluster.Sg[i].sgId;
+                    cluster.Sg[i].Sp[j] = cluster.Sg[i].SpObj[j].spawnPointData;
+                }
+            }
+        }
+    }
 }

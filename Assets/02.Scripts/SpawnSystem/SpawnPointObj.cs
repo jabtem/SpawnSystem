@@ -24,4 +24,8 @@ public class SpawnPointObj : MonoBehaviour
         }
     }
 
+    private void OnValidate()
+    {
+        SpawnClusterContainer.Instance.DataRefresh();
+    }
 }

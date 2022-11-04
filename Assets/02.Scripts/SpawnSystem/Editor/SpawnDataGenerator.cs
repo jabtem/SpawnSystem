@@ -52,7 +52,11 @@ public class SpawnDataGenerator : EditorWindow
             //});
             File.WriteAllText(path, save);
             Debug.Log("Save Json!");
+
+            AssetDatabase.Refresh();
         }
     }
+
+
 
 }

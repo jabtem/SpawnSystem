@@ -5,52 +5,42 @@
                 {
                     "Sp": [
                         {
-                            "spId": 1,
+                            "spId": 0,
                             "sgId": 0,
                             "spawnPoint": {
-                                "x": 4.394676208496094,
+                                "x": 3.728475570678711,
                                 "y": -8.452587127685547,
-                                "z": 0.5745518207550049
-                            },
-                            "radius": 0,
-                            "isRandom": false
-                        },
-                        {
-                            "spId": 2,
-                            "sgId": 0,
-                            "spawnPoint": {
-                                "x": 1.9184651374816895,
-                                "y": -8.452587127685547,
-                                "z": 0.2540243864059448
-                            },
-                            "radius": 0,
-                            "isRandom": false
-                        },
-                        {
-                            "spId": 3,
-                            "sgId": 0,
-                            "spawnPoint": {
-                                "x": 2.9600000381469728,
-                                "y": -8.452587127685547,
-                                "z": 2.1630074977874758
+                                "z": -0.0959627628326416
                             },
                             "radius": 0,
                             "isRandom": false
                         }
                     ],
+                    "SpObj": [
+                        {
+                            "instanceID": 24254
+                        }
+                    ],
                     "sgId": 0,
-                    "scId": 1020,
-                    "monsterType": "Cube",
-                    "maxCount": 0
+                    "scId": 0,
+                    "monsterType": "",
+                    "maxCount": 0,
+                    "spawnRandom": false
                 }
             ],
-            "scId": 1020,
-            "explanation": "Test"
-        },
-        {
-            "Sg": [],
-            "scId": 2020,
-            "explanation": "Test2"
+            "SgObj": [
+                {
+                    "instanceID": 24260
+                },
+                {
+                    "instanceID": -1820
+                }
+            ],
+            "scId": 0,
+            "explanation": "",
+            "clusterObj": {
+                "instanceID": 24238
+            }
         }
     ]
 }
