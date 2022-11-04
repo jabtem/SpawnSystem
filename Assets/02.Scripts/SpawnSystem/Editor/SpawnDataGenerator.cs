@@ -56,13 +56,6 @@ public class SpawnDataGenerator : EditorWindow
 
         }
 
-        //if (spawnClusterContainer != null)
-        //{
-        //    if (editor)
-        //    {
-        //        editor.OnInspectorGUI();
-        //    }
-        //}
 
     }
 
@@ -77,6 +70,8 @@ public class SpawnDataGenerator : EditorWindow
 
 
             var save = JsonUtility.ToJson(spawnClusterContainer.spawnData, true);
+
+            //Json.Net 데이터 저장
             //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented);
             //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented, new JsonSerializerSettings
             //{
