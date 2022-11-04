@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 [System.Serializable]
 public class SpawnCluster
 {
-    //[HideInInspector]
+    [HideInInspector]
     public List<SpawnGroup> Sg = new();
     [Header("스폰 그룹")]
     public List<SpawnGroupObj> SgObj = new();
@@ -35,14 +35,16 @@ public class SpawnCluster
 [System.Serializable]
 public class SpawnGroup
 {
-    //[HideInInspector]
+    [HideInInspector]
     public List<SpawnPoint> Sp = new();
 
     [Header("스폰 포인트")]
     public List<SpawnPointObj> SpObj = new();
 
+    
     //This ID
     public int sgId;
+    [HideInInspector]
     //Parent ID
     public int scId;
 
@@ -62,18 +64,20 @@ public class SpawnGroup
 [System.Serializable]
 public class SpawnPoint
 {
+    [Header("포인트 ID")]
     //This ID
     public int spId;
 
+    [HideInInspector]
     //Parent ID;
     public int sgId;
 
     //SpawnPoint
     public Vector3 spawnPoint;
 
-
+    [Header("랜덤 스폰 반경")]
     public int radius;
-
+    [Header("랜덤 스폰 여부")]
     public bool isRandom;
 
     public SpawnPoint(int _SgId, Vector3 point)

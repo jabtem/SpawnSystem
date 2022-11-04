@@ -16,22 +16,43 @@ public class SpawnDataGenerator : EditorWindow
         wnd.titleContent = new GUIContent("spawnsystemtool ui");
     }
 
-    SpawnClusterContainer spawnClusterContainer;
+    public SpawnClusterContainer spawnClusterContainer;
+
+    [SerializeField] List<SpawnCluster> clusters;
     static string path;
+
+    Editor editor;
     private void OnEnable()
     {
         spawnClusterContainer = GameObject.FindObjectOfType<SpawnClusterContainer>();
+        clusters = spawnClusterContainer.spawnClusters;
+        editor = Editor.CreateEditor(this);
+    }
+
+    private void OnInspectorUpdate()
+    {
+        Repaint();
     }
 
     private void OnGUI()
     {
-        spawnClusterContainer = EditorGUILayout.ObjectField("스폰클러스터", spawnClusterContainer, typeof(SpawnClusterContainer), true) as SpawnClusterContainer;
+
+        spawnClusterContainer = EditorGUILayout.ObjectField("스폰클러스터 스크립트", spawnClusterContainer, typeof(SpawnClusterContainer), true) as SpawnClusterContainer;
         path = Application.dataPath + "/Resources/Spawndata/SpawnData.json";
 
         if (GUILayout.Button("Json Save"))
         {
             JsonSave();
         }
+
+        //if (spawnClusterContainer != null)
+        //{
+        //    if (editor)
+        //    {
+        //        editor.OnInspectorGUI();
+        //    }
+        //}
+
     }
 
     void JsonSave()
@@ -59,4 +80,28 @@ public class SpawnDataGenerator : EditorWindow
 
 
 
+
+
+
+}
+
+[CustomEditor(typeof(SpawnDataGenerator))]
+public class SpawnDataGeneratorDraw :Editor
+{
+
+    public override void OnInspectorGUI()
+    {
+        SerializedProperty("clusters", "스폰클러스터");
+
+    }
+    void SerializedProperty(string propertyName, string name)
+    {
+        var property = serializedObject.FindProperty(propertyName);
+        EditorGUI.BeginChangeCheck();
+        EditorGUILayout.PropertyField(property, new GUIContent(name), true);
+        if (EditorGUI.EndChangeCheck())
+        {
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
 }

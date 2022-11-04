@@ -13,7 +13,6 @@ public class SpawnClusterContainerrInspector : Editor
 {
 
     SpawnClusterContainer spawnClusterContainer;
-    SerializedProperty spawnClusters;
 
 
 
@@ -34,7 +33,7 @@ public class SpawnClusterContainerrInspector : Editor
 
     public override void OnInspectorGUI()
     {
-        SerializedProperty(spawnClusters, "spawnClusters", "스폰클러스터");
+        SerializedProperty("spawnClusters", "스폰클러스터");
         SceneView view = GetSceneView();
 
 
@@ -165,9 +164,9 @@ public class SpawnClusterContainerrInspector : Editor
         return view;
     }
 
-    void SerializedProperty(SerializedProperty property, string propertyName, string name)
+    public void SerializedProperty(string propertyName, string name)
     {
-        property = serializedObject.FindProperty(propertyName);
+        var property = serializedObject.FindProperty(propertyName);
         EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(property, new GUIContent(name), true);
         if (EditorGUI.EndChangeCheck())
