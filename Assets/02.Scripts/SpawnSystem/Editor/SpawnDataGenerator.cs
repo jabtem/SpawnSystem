@@ -18,15 +18,13 @@ public class SpawnDataGenerator : EditorWindow
 
     public SpawnClusterContainer spawnClusterContainer;
 
-    [SerializeField] List<SpawnCluster> clusters;
     static string path;
 
-    Editor editor;
     private void OnEnable()
     {
         spawnClusterContainer = GameObject.FindObjectOfType<SpawnClusterContainer>();
-        clusters = spawnClusterContainer.spawnClusters;
-        editor = Editor.CreateEditor(this);
+        //clusters = spawnClusterContainer.spawnClusters;
+        //editor = Editor.CreateEditor(this);
     }
 
     private void OnInspectorUpdate()
@@ -40,9 +38,22 @@ public class SpawnDataGenerator : EditorWindow
         spawnClusterContainer = EditorGUILayout.ObjectField("스폰클러스터 스크립트", spawnClusterContainer, typeof(SpawnClusterContainer), true) as SpawnClusterContainer;
         path = Application.dataPath + "/Resources/Spawndata/SpawnData.json";
 
+        //Json 저장
         if (GUILayout.Button("Json Save"))
         {
             JsonSave();
+        }
+
+        //데이터복원
+        if(GUILayout.Button("Recovery"))
+        {
+            if(spawnClusterContainer is not null)
+            {
+                return;
+            }
+
+            Recovery();
+
         }
 
         //if (spawnClusterContainer != null)
@@ -78,6 +89,10 @@ public class SpawnDataGenerator : EditorWindow
         }
     }
 
+    void Recovery()
+    {
+        Debug.Log("복구!");
+    }
 
 
 
