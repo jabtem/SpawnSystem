@@ -17,12 +17,12 @@ public class SpawnDataGenerator : EditorWindow
     }
 
     public SpawnClusterContainer spawnClusterContainer;
-
+    Scene activeScene;
     static string path;
 
     private void OnEnable()
     {
-        spawnClusterContainer = GameObject.FindObjectOfType<SpawnClusterContainer>();
+
         //clusters = spawnClusterContainer.spawnClusters;
         //editor = Editor.CreateEditor(this);
     }
@@ -35,8 +35,17 @@ public class SpawnDataGenerator : EditorWindow
     private void OnGUI()
     {
 
+
+
+
+        if(activeScene != SceneManager.GetActiveScene())
+        {
+            activeScene = SceneManager.GetActiveScene();
+            Debug.Log(activeScene.name);
+        }
+
         spawnClusterContainer = EditorGUILayout.ObjectField("스폰클러스터 스크립트", spawnClusterContainer, typeof(SpawnClusterContainer), true) as SpawnClusterContainer;
-        path = Application.dataPath + "/Resources/Spawndata/SpawnData.json";
+        path = Application.dataPath + $"/Resources/Spawndata/{activeScene.name}SpawnData.json";
 
         //Json 저장
         if (GUILayout.Button("Json Save"))
@@ -58,6 +67,11 @@ public class SpawnDataGenerator : EditorWindow
 
         if(spawnClusterContainer == null)
         {
+            if (GameObject.FindObjectOfType<SpawnClusterContainer>() != null)
+            {
+                spawnClusterContainer = GameObject.FindObjectOfType<SpawnClusterContainer>();
+            }
+
             if (GUILayout.Button("Create Container"))
             {
                 //if (spawnClusterContainer is not null)
