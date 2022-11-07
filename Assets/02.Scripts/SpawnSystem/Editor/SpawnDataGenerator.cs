@@ -44,17 +44,31 @@ public class SpawnDataGenerator : EditorWindow
             JsonSave();
         }
 
-        //데이터복원
-        if(GUILayout.Button("Recovery"))
+        ////데이터복원
+        //if(GUILayout.Button("Recovery"))
+        //{
+        //    if(spawnClusterContainer is not null)
+        //    {
+        //        return;
+        //    }
+
+        //    Recovery();
+
+        //}
+
+        if(spawnClusterContainer == null)
         {
-            if(spawnClusterContainer is not null)
+            if (GUILayout.Button("Create Container"))
             {
-                return;
+                //if (spawnClusterContainer is not null)
+                //{
+                //    return;
+                //}
+
+                Create();
             }
-
-            Recovery();
-
         }
+
 
 
     }
@@ -84,9 +98,12 @@ public class SpawnDataGenerator : EditorWindow
         }
     }
 
-    void Recovery()
+    void Create()
     {
-        Debug.Log("복구!");
+        GameObject newContainer = new GameObject("SpawnClusterContainer");
+        spawnClusterContainer = newContainer.AddComponent<SpawnClusterContainer>();
+        
+
     }
 
 

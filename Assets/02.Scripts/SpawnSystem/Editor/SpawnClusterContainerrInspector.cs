@@ -12,7 +12,7 @@ using System.IO;
 public class SpawnClusterContainerrInspector : Editor
 {
 
-    SpawnClusterContainer spawnClusterContainer;
+    SpawnClusterContainer spawnClusterContainer = null;
 
 
 
@@ -33,60 +33,64 @@ public class SpawnClusterContainerrInspector : Editor
 
     public override void OnInspectorGUI()
     {
-        SerializedProperty("spawnClusters", "스폰클러스터");
-        SceneView view = GetSceneView();
 
 
 
-        for (int i = 0; i < spawnClusterContainer.spawnClusters.Count; ++i)
+        if(spawnClusterContainer != null)
         {
-            GUILayout.Label($"Spawn Cluster Num {i}");
-            GUI.backgroundColor = Color.green;
-            if (!spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set Start") )
+            SerializedProperty("spawnClusters", "스폰클러스터");
+            SceneView view = GetSceneView();
+            for (int i = 0; i < spawnClusterContainer.spawnClusters.Count; ++i)
             {
-                curIndex = i;
-                spawnClusterContainer.spawnClusters[i].isClick = true;
-                pointIndex = 0;
-                GameObject group = new GameObject($"SpawnGroup");
-                group.transform.SetParent(spawnClusterContainer.spawnClusters[i].clusterObj.transform);
-                curSg = group.AddComponent<SpawnGroupObj>();
+                GUILayout.Label($"Spawn Cluster Num {i}");
+                GUI.backgroundColor = Color.green;
+                if (!spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set Start"))
+                {
+                    curIndex = i;
+                    spawnClusterContainer.spawnClusters[i].isClick = true;
+                    pointIndex = 0;
+                    GameObject group = new GameObject($"SpawnGroup");
+                    group.transform.SetParent(spawnClusterContainer.spawnClusters[i].clusterObj.transform);
+                    curSg = group.AddComponent<SpawnGroupObj>();
 
 
-                spawnClusterContainer.spawnClusters[curIndex].SgObj.Add(curSg);
+                    spawnClusterContainer.spawnClusters[curIndex].SgObj.Add(curSg);
 
-                curSg.spawnGroupData = new(spawnClusterContainer.spawnClusters[curIndex].scId);
-                spawnClusterContainer.spawnClusters[curIndex].Sg.Add(curSg.spawnGroupData);
-                view.Focus();
+                    curSg.spawnGroupData = new(spawnClusterContainer.spawnClusters[curIndex].scId);
+                    spawnClusterContainer.spawnClusters[curIndex].Sg.Add(curSg.spawnGroupData);
+                    view.Focus();
 
-                
+
+
+                }
+                GUI.backgroundColor = Color.red;
+                if (spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
+                {
+                    FinishEdit(i);
+
+                }
 
             }
-            GUI.backgroundColor = Color.red;
-            if (spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
+            GUI.backgroundColor = Color.white;
+            if (GUILayout.Button("클러스터 추가"))
             {
-                FinishEdit(i);
+                spawnClusterContainer.spawnClusters.Add(new SpawnCluster());
+                int index = spawnClusterContainer.spawnClusters.Count - 1;
+                GameObject go = new("SpawnCluster");
+                go.transform.SetParent(spawnClusterContainer.transform);
+
+                spawnClusterContainer.spawnClusters[index].clusterObj = go;
 
             }
+            //인스펙터 값 변경시 값유지위함
+            if (GUI.changed)
+            {
+                spawnClusterContainer.DataRefresh();
+                EditorUtility.SetDirty(target);
 
+            }
         }
-        GUI.backgroundColor = Color.white;
-        if (GUILayout.Button("클러스터 추가"))
-        {
-            spawnClusterContainer.spawnClusters.Add(new SpawnCluster());
-            int index = spawnClusterContainer.spawnClusters.Count-1;
-            GameObject go = new("SpawnCluster");
-            go.transform.SetParent(spawnClusterContainer.transform);
-
-            spawnClusterContainer.spawnClusters[index].clusterObj = go;
-
-        }
-        //인스펙터 값 변경시 값유지위함
-        if (GUI.changed)
-        {
-            spawnClusterContainer.DataRefresh();
-            EditorUtility.SetDirty(target);
-
-        }
+ 
     }
     
 
@@ -106,7 +110,11 @@ public class SpawnClusterContainerrInspector : Editor
                 curSg = null;
             }
         }
-        EditorUtility.SetDirty(target);
+        if(target != null)
+        {
+            EditorUtility.SetDirty(target);
+        }
+
     }
 
     public void OnSceneGUI()

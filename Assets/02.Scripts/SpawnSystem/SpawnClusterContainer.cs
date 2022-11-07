@@ -44,7 +44,7 @@ public class SpawnGroup
     
     //This ID
     public int sgId;
-    [HideInInspector]
+
     //Parent ID
     public int scId;
 
@@ -68,7 +68,6 @@ public class SpawnPoint
     //This ID
     public int spId;
 
-    [HideInInspector]
     //Parent ID;
     public int sgId;
 
@@ -115,7 +114,7 @@ public class SpawnClusterContainer : MonoBehaviour
 
     public int sceneId;
 
-    public List<SpawnCluster> spawnClusters;
+    public List<SpawnCluster> spawnClusters = new();
 
     public SpawnData spawnData;
 
