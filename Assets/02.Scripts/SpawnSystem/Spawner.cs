@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     SpawnClusterContainer container;
 
     static string dataPath = $"{Application.streamingAssetsPath}/SpawnInfo.gdjs";
-    static string jsonPath = "Spawndata/SpawnData";
+    static string jsonPath;
 
     SpawnInfo data;
 
@@ -23,6 +23,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
+        jsonPath = $"Spawndata/{SceneManager.GetActiveScene().name}SpawnData";
         var jsonData = Resources.Load<TextAsset>(jsonPath);
         readJsonData = JsonUtility.FromJson<SpawnData>(jsonData.ToString());
 
@@ -71,11 +72,11 @@ public class Spawner : MonoBehaviour
     {
         foreach(var data in data.GetSpawnDatas())
         {
-            SpawnOrder(data.ScId, data.SgId, data.SpId);
+            SpawnOrder(data.ScId, data.SgId);
         }
     }
 
-    public void SpawnOrder(int cid, int gid, int pid)
+    public void SpawnOrder(int cid, int gid)
     {
         foreach (var cluster in readJsonData.spawnClusters)
         {
@@ -85,17 +86,40 @@ public class Spawner : MonoBehaviour
                 {
                     if (group.sgId == gid)
                     {
-                        foreach (var point in group.Sp)
-                        {
-                            if (point.spId == pid)
-                            {
-                                SpawnMonster(group.monsterType, point.spawnPoint);
 
-                            }
+
+                        if(group.spawnRandom)
+                        {
+                            RandomSpawn(group);
                         }
+                        else
+                        {
+                            //foreach (var point in group.Sp)
+                            //{
+                            //    if (point.spId == pid)
+                            //    {
+                            //        SpawnMonster(group.monsterType, point.spawnPoint);
+
+                            //    }
+                            //}
+                        }
+
+
                     }
                 }
             }
+        }
+    }
+
+    
+    public void RandomSpawn(SpawnGroup group)
+    {
+        for (int i = 0; i < group.maxCount; ++i)
+        {
+            int rand = Random.Range(0, group.Sp.Count);
+            Debug.Log(rand);
+
+            SpawnMonster(group.monsterType, group.Sp[rand].spawnPoint);
         }
     }
 

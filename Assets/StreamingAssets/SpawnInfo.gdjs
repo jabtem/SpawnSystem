@@ -1,6 +1,6 @@
 {
 	"ToolsVersion": "2020.1.1.0",
-	"ChangeNumber": 7,
+	"ChangeNumber": 9,
 	"Collections": {
 		"Entity": [
 			{
@@ -244,19 +244,6 @@
 						"ReferenceType": null,
 						"Size": 4,
 						"Specifications": null
-					},
-					{
-						"Id": "9a7660632483693f0500004c",
-						"Name": "SpId",
-						"DisplayName": "Point Id",
-						"Description": null,
-						"DataType": 13,
-						"DefaultValue": "0",
-						"Uniqueness": 0,
-						"Requirement": 2,
-						"ReferenceType": null,
-						"Size": 4,
-						"Specifications": null
 					}
 				]
 			},
@@ -424,12 +411,6 @@
 				"ScId": 1020,
 				"SgId": 0,
 				"SpId": 1
-			},
-			{
-				"Id": 1,
-				"ScId": 1020,
-				"SgId": 0,
-				"SpId": 3
 			}
 		]
 	}

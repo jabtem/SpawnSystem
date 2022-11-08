@@ -164,19 +164,16 @@ namespace Assets.Charon.CharonData
 		private readonly int id;
 		private readonly int scId;
 		private readonly int sgId;
-		private readonly int spId;
 
 		public int Id { get { return this.id; } }
 		public int ScId { get { return this.scId; } }
 		public int SgId { get { return this.sgId; } }
-		public int SpId { get { return this.spId; } }
 
-		public SpawnData(int id, int scId, int sgId, int spId)
+		public SpawnData(int id, int scId, int sgId)
 		{
 			this.id = id;
 			this.scId = scId;
 			this.sgId = sgId;
-			this.spId = spId;
 			this.hashCode = this.ComputeHashCode();
 		}
 
@@ -229,7 +226,6 @@ namespace Assets.Charon.CharonData
 				&& AreEquals(this.id, other.id)
 				&& AreEquals(this.scId, other.scId)
 				&& AreEquals(this.sgId, other.sgId)
-				&& AreEquals(this.spId, other.spId)
 			);
 		}
 
@@ -265,7 +261,6 @@ namespace Assets.Charon.CharonData
 				+ GetHashCodeFor(this.id)
 				+ GetHashCodeFor(this.scId)
 				+ GetHashCodeFor(this.sgId)
-				+ GetHashCodeFor(this.spId)
 			);
 		}
 
@@ -275,7 +270,6 @@ namespace Assets.Charon.CharonData
 				sb.Append("Id: ").Append(this.id).Append(", ");
 				sb.Append("Cluster Id: ").Append(this.scId).Append(", ");
 				sb.Append("Group Id: ").Append(this.sgId).Append(", ");
-				sb.Append("Point Id: ").Append(this.spId).Append(", ");
 			if (sb.Length > 2)
 				sb.Length -= 2;
 
@@ -990,9 +984,8 @@ namespace Assets.Charon.CharonData
 				var id = GetAndCovertValue<int>(values, "Id");
 				var scId = GetAndCovertValue<int>(values, "ScId");
 				var sgId = GetAndCovertValue<int>(values, "SgId");
-				var spId = GetAndCovertValue<int>(values, "SpId");
 
-				return new SpawnData(id, scId, sgId, spId);
+				return new SpawnData(id, scId, sgId);
 			}
 			private SpawnData ReadSpawnData(Dictionary<string, object> collectionOrDocumentPatch = null)
 			{
@@ -1009,7 +1002,6 @@ namespace Assets.Charon.CharonData
 				var id = default(int);
 				var scId = default(int);
 				var sgId = default(int);
-				var spId = default(int);
 #pragma warning restore 0168
 				this.ReadObjectBegin();
 				while (this.Node.Token != ReaderToken.EndOfObject)
@@ -1068,16 +1060,6 @@ namespace Assets.Charon.CharonData
 									this.NextToken();
 									break;
 								}
-								case "SpId":
-								{
-									this.ThrowIfNull("value of Integer type", "SpId", "SpawnData");
-
-									this.ThrowIfNotValue();
-
-									spId = (int)this.Node.AsInt32;
-									this.NextToken();
-									break;
-								}
 								default:
 								{
 									this.ReadAny();
@@ -1100,10 +1082,9 @@ namespace Assets.Charon.CharonData
 					PatchValue(documentPatch, "Id", ref id);
 					PatchValue(documentPatch, "ScId", ref scId);
 					PatchValue(documentPatch, "SgId", ref sgId);
-					PatchValue(documentPatch, "SpId", ref spId);
 				}
 
-				return new SpawnData(id, scId, sgId, spId);
+				return new SpawnData(id, scId, sgId);
 			}
 			public Dictionary<string, object> ReadDocument()
 			{

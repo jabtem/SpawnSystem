@@ -75,7 +75,7 @@ public class SpawnPoint
     public Vector3 spawnPoint;
 
     [Header("랜덤 스폰 반경")]
-    public int radius;
+    public float radius;
     [Header("랜덤 스폰 여부")]
     public bool isRandom;
 

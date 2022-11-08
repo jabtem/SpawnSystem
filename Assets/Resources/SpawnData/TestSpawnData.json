@@ -1,0 +1,71 @@
+{
+    "spawnClusters": [
+        {
+            "Sg": [
+                {
+                    "Sp": [
+                        {
+                            "spId": 1,
+                            "sgId": 0,
+                            "spawnPoint": {
+                                "x": 5.15920877456665,
+                                "y": -8.452587127685547,
+                                "z": -1.502854347229004
+                            },
+                            "radius": 1.0,
+                            "isRandom": false
+                        },
+                        {
+                            "spId": 2,
+                            "sgId": 0,
+                            "spawnPoint": {
+                                "x": 2.1463444232940676,
+                                "y": -8.452587127685547,
+                                "z": -0.7720339298248291
+                            },
+                            "radius": 0.5,
+                            "isRandom": false
+                        },
+                        {
+                            "spId": 3,
+                            "sgId": 0,
+                            "spawnPoint": {
+                                "x": -0.7292501926422119,
+                                "y": -8.452587127685547,
+                                "z": -0.2894937992095947
+                            },
+                            "radius": 1.0,
+                            "isRandom": false
+                        }
+                    ],
+                    "SpObj": [
+                        {
+                            "instanceID": 24274
+                        },
+                        {
+                            "instanceID": 24268
+                        },
+                        {
+                            "instanceID": 24256
+                        }
+                    ],
+                    "sgId": 0,
+                    "scId": 1020,
+                    "monsterType": "Cube",
+                    "maxCount": 5,
+                    "spawnRandom": true
+                }
+            ],
+            "SgObj": [
+                {
+                    "instanceID": 24262
+                }
+            ],
+            "scId": 1020,
+            "explanation": "",
+            "clusterObj": {
+                "instanceID": 24282
+            }
+        }
+    ]
+}

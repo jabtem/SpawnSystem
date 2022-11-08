@@ -11,9 +11,23 @@ public class SpawnPointObj : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
+#if UNITY_EDITOR
 
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(transform.position, 0.5f);
+
+        var oldColor = UnityEditor.Handles.color;
+        var color = Color.blue;
+        color.a = 0.1f;
+        UnityEditor.Handles.color = color;
+        UnityEditor.Handles.DrawSolidDisc(this.transform.position, Vector3.up, spawnPointData.radius);
+        UnityEditor.Handles.color = oldColor;
+
+        UnityEditor.Handles.color = Color.green;
+        UnityEditor.Handles.DrawSolidDisc(this.transform.position, Vector3.up, 0.1f);
+        UnityEditor.Handles.color = oldColor;
+
+#endif
     }
 
     private void Update()

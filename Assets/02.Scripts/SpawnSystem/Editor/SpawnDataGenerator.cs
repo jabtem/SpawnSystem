@@ -41,7 +41,6 @@ public class SpawnDataGenerator : EditorWindow
         if(activeScene != SceneManager.GetActiveScene())
         {
             activeScene = SceneManager.GetActiveScene();
-            Debug.Log(activeScene.name);
         }
 
         spawnClusterContainer = EditorGUILayout.ObjectField("스폰클러스터 스크립트", spawnClusterContainer, typeof(SpawnClusterContainer), true) as SpawnClusterContainer;
@@ -53,7 +52,7 @@ public class SpawnDataGenerator : EditorWindow
             JsonSave();
         }
 
-        ////데이터복원
+        ////데이터복원(미사용코드)
         //if(GUILayout.Button("Recovery"))
         //{
         //    if(spawnClusterContainer is not null)
@@ -65,6 +64,7 @@ public class SpawnDataGenerator : EditorWindow
 
         //}
 
+        ///컨테이너 존재여부 체크
         if(spawnClusterContainer == null)
         {
             if (GameObject.FindObjectOfType<SpawnClusterContainer>() != null)
@@ -72,12 +72,9 @@ public class SpawnDataGenerator : EditorWindow
                 spawnClusterContainer = GameObject.FindObjectOfType<SpawnClusterContainer>();
             }
 
+            //컨테이너 없으면 버튼 노출
             if (GUILayout.Button("Create Container"))
             {
-                //if (spawnClusterContainer is not null)
-                //{
-                //    return;
-                //}
 
                 Create();
             }
