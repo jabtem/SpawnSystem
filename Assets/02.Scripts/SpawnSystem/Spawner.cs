@@ -87,7 +87,8 @@ public class Spawner : MonoBehaviour
                     if (group.spawnGroupData.sgId == gid)
                     {
 
-                        group.SpawnStart();
+                        //group.SpawnStart();
+                        group.spawnGroupData.spawnStart = true;
                         //if(group.spawnRandom)
                         //{
                         //    RandomSpawn(group);

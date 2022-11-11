@@ -54,12 +54,26 @@ public class SpawnGroup
 
     public bool spawnRandom;
 
+    int spawnCount = 0;
+
+    //스폰딜레이
+    public float spawnDelay;
+
+
+    //스폰시작 플래그
+    public bool spawnStart;
+
     public SpawnGroup(int _scid)
     {
         scId = _scid;
         Sp = new();
     }
 
+    public int SpawnCount
+    {
+        get => spawnCount;
+        set => spawnCount = value;
+    }
 }
 [System.Serializable]
 public class SpawnPoint
@@ -118,7 +132,7 @@ public class SpawnClusterContainer : MonoBehaviour
 
     public SpawnData spawnData;
 
-
+     
     public void DataRefresh()
     {
         foreach (var cluster in spawnClusters)

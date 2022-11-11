@@ -472,6 +472,8 @@ MonoBehaviour:
     monsterType: Cube
     maxCount: 5
     spawnRandom: 1
+    spawnDelay: 0
+    spawnStart: 0
 --- !u!1 &1044776712
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +757,8 @@ MonoBehaviour:
       monsterType: Cube
       maxCount: 5
       spawnRandom: 1
+      spawnDelay: 0
+      spawnStart: 0
     SgObj:
     - {fileID: 955862931}
     scId: 1020
@@ -786,8 +790,10 @@ MonoBehaviour:
         sgId: 0
         scId: 1020
         monsterType: Cube
-        maxCount: 0
+        maxCount: 5
         spawnRandom: 1
+        spawnDelay: 2
+        spawnStart: 0
       SgObj:
       - {fileID: 955862931}
       scId: 1020

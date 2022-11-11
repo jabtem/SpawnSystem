@@ -10,6 +10,7 @@ public class SpawnGroupObj : MonoBehaviour
 
     public SpawnGroup spawnGroupData;
 
+    float time;
     private void OnDrawGizmosSelected()
     {
         for (int i = 1; i < spawnGroupData.Sp.Count + 1; ++i)
@@ -26,22 +27,53 @@ public class SpawnGroupObj : MonoBehaviour
         SpawnClusterContainer.Instance.DataRefresh();
     }
 
-    public void SpawnStart()
+    private void Update()
     {
-        if(spawnGroupData.spawnRandom)
+
+
+        if(spawnGroupData.spawnStart)
         {
-            RandomSpawn(spawnGroupData);
+            
+            if(spawnGroupData.SpawnCount < spawnGroupData.maxCount)
+            {
+                time += Time.deltaTime;
+
+                if (time >= spawnGroupData.spawnDelay)
+                {
+
+                    ++spawnGroupData.SpawnCount;
+                    time = 0f;
+                    if (spawnGroupData.spawnRandom)
+                    {
+                        RandomSpawn();
+                    }
+                }
+
+            }
         }
     }
 
-    public void RandomSpawn(SpawnGroup group)
+    public void SpawnStart()
     {
-        for (int i = 0; i < group.maxCount; ++i)
-        {
-            int rand = Random.Range(0, group.Sp.Count);
+        //if(spawnGroupData.spawnRandom)
+        //{
+        //    RandomSpawn(spawnGroupData);
+        //}
+    }
 
-            SpawnMonster(group.monsterType, group.Sp[rand].spawnPoint);
-        }
+    public void RandomSpawn()
+    {
+
+        int rand = Random.Range(0, spawnGroupData.Sp.Count);
+
+        SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[rand].spawnPoint);
+
+        //for (int i = 0; i < group.maxCount; ++i)
+        //{
+        //    int rand = Random.Range(0, group.Sp.Count);
+
+        //    SpawnMonster(group.monsterType, group.Sp[rand].spawnPoint);
+        //}
     }
 
     public void SpawnMonster(string type, Vector3 pos)
@@ -55,6 +87,7 @@ public class SpawnGroupObj : MonoBehaviour
         handle.Completed += (data) =>
         {
             data.Result.transform.position = pos;
+
         };
 
         yield return handle;
