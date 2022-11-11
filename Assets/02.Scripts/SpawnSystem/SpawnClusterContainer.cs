@@ -54,12 +54,13 @@ public class SpawnGroup
 
     public bool spawnRandom;
 
+    [System.NonSerialized]
     int spawnCount = 0;
 
     //스폰딜레이
     public float spawnDelay;
 
-
+    [System.NonSerialized]
     //스폰시작 플래그
     public bool spawnStart;
 

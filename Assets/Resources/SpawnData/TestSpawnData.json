@@ -53,9 +53,8 @@
                     "scId": 1020,
                     "monsterType": "Cube",
                     "maxCount": 5,
-                    "spawnRandom": true,
-                    "spawnDelay": 0.0,
-                    "spawnStart": false
+                    "spawnRandom": false,
+                    "spawnDelay": 2.0
                 }
             ],
             "SgObj": [

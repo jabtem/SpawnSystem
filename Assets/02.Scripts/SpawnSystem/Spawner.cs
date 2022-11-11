@@ -86,25 +86,7 @@ public class Spawner : MonoBehaviour
                 {
                     if (group.spawnGroupData.sgId == gid)
                     {
-
-                        //group.SpawnStart();
                         group.spawnGroupData.spawnStart = true;
-                        //if(group.spawnRandom)
-                        //{
-                        //    RandomSpawn(group);
-                        //}
-                        //else
-                        //{
-                        //    //foreach (var point in group.Sp)
-                        //    //{
-                        //    //    if (point.spId == pid)
-                        //    //    {
-                        //    //        SpawnMonster(group.monsterType, point.spawnPoint);
-
-                        //    //    }
-                        //    //}
-                        //}
-
 
                     }
                 }

@@ -11,6 +11,9 @@ public class SpawnGroupObj : MonoBehaviour
     public SpawnGroup spawnGroupData;
 
     float time;
+
+    int lastSpawnIndex;
+
     private void OnDrawGizmosSelected()
     {
         for (int i = 1; i < spawnGroupData.Sp.Count + 1; ++i)
@@ -47,18 +50,23 @@ public class SpawnGroupObj : MonoBehaviour
                     {
                         RandomSpawn();
                     }
+                    else
+                    {
+                        Spawn();
+                    }
                 }
 
             }
         }
     }
 
-    public void SpawnStart()
+    public void Spawn()
     {
-        //if(spawnGroupData.spawnRandom)
-        //{
-        //    RandomSpawn(spawnGroupData);
-        //}
+        lastSpawnIndex %= spawnGroupData.Sp.Count;
+
+        SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[lastSpawnIndex].spawnPoint);
+
+        ++lastSpawnIndex;
     }
 
     public void RandomSpawn()
@@ -87,6 +95,8 @@ public class SpawnGroupObj : MonoBehaviour
         handle.Completed += (data) =>
         {
             data.Result.transform.position = pos;
+            Creature group = data.Result.AddComponent<Creature>();
+            group.parentSet(spawnGroupData);
 
         };
 
