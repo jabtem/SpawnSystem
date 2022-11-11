@@ -12,8 +12,8 @@
                                 "y": -8.452587127685547,
                                 "z": -1.502854347229004
                             },
-                            "radius": 1.0,
-                            "isRandom": false
+                            "radius": 2.119999885559082,
+                            "isRandom": true
                         },
                         {
                             "spId": 2,
@@ -23,8 +23,8 @@
                                 "y": -8.452587127685547,
                                 "z": -0.7720339298248291
                             },
-                            "radius": 0.5,
-                            "isRandom": false
+                            "radius": 3.569999933242798,
+                            "isRandom": true
                         },
                         {
                             "spId": 3,
@@ -34,8 +34,8 @@
                                 "y": -8.452587127685547,
                                 "z": -0.2894937992095947
                             },
-                            "radius": 1.0,
-                            "isRandom": false
+                            "radius": 8.0,
+                            "isRandom": true
                         }
                     ],
                     "SpObj": [
@@ -53,7 +53,7 @@
                     "scId": 1020,
                     "monsterType": "Cube",
                     "maxCount": 5,
-                    "spawnRandom": false,
+                    "spawnRandom": true,
                     "spawnDelay": 2.0
                 }
             ],

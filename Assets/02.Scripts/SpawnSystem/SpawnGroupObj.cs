@@ -12,7 +12,7 @@ public class SpawnGroupObj : MonoBehaviour
 
     float time;
 
-    int lastSpawnIndex;
+    int spawnIndex;
 
     private void OnDrawGizmosSelected()
     {
@@ -46,14 +46,7 @@ public class SpawnGroupObj : MonoBehaviour
 
                     ++spawnGroupData.SpawnCount;
                     time = 0f;
-                    if (spawnGroupData.spawnRandom)
-                    {
-                        RandomSpawn();
-                    }
-                    else
-                    {
-                        Spawn();
-                    }
+                    Spawn();
                 }
 
             }
@@ -62,27 +55,40 @@ public class SpawnGroupObj : MonoBehaviour
 
     public void Spawn()
     {
-        lastSpawnIndex %= spawnGroupData.Sp.Count;
+        //스폰그룹이 랜덤옵션인경우
+        if(spawnGroupData.spawnRandom)
+        {
+            spawnIndex = Random.Range(0, spawnGroupData.Sp.Count);
+        }
+        else
+        {
+            spawnIndex %= spawnGroupData.Sp.Count;
+        }
 
-        SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[lastSpawnIndex].spawnPoint);
 
-        ++lastSpawnIndex;
+        //스폰포인트가 랜덤옵션인경우
+        if (spawnGroupData.Sp[spawnIndex].isRandom)
+        {
+
+            //스폰포인트의 반경안의 랜덤 좌표 
+            Vector3 originPoint = spawnGroupData.Sp[spawnIndex].spawnPoint;
+            Vector3 randPoint = Random.insideUnitCircle * spawnGroupData.Sp[spawnIndex].radius;
+            Vector3 randSpawnPoint = originPoint + randPoint;
+            
+
+            //y좌표 리셋
+            randSpawnPoint.y = originPoint.y;
+            SpawnMonster(spawnGroupData.monsterType, randSpawnPoint);
+        }
+        else
+        {
+            SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[spawnIndex].spawnPoint);
+        }
+
+
+        ++spawnIndex;
     }
 
-    public void RandomSpawn()
-    {
-
-        int rand = Random.Range(0, spawnGroupData.Sp.Count);
-
-        SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[rand].spawnPoint);
-
-        //for (int i = 0; i < group.maxCount; ++i)
-        //{
-        //    int rand = Random.Range(0, group.Sp.Count);
-
-        //    SpawnMonster(group.monsterType, group.Sp[rand].spawnPoint);
-        //}
-    }
 
     public void SpawnMonster(string type, Vector3 pos)
     {
