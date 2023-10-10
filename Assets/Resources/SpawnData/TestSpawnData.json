@@ -8,9 +8,9 @@
                             "spId": 1,
                             "sgId": 0,
                             "spawnPoint": {
-                                "x": 5.15920877456665,
+                                "x": 15.539999008178711,
                                 "y": -8.452587127685547,
-                                "z": -1.502854347229004
+                                "z": -4.590000152587891
                             },
                             "radius": 2.119999885559082,
                             "isRandom": true
@@ -19,9 +19,9 @@
                             "spId": 2,
                             "sgId": 0,
                             "spawnPoint": {
-                                "x": 2.1463444232940676,
+                                "x": 6.840000152587891,
                                 "y": -8.452587127685547,
-                                "z": -0.7720339298248291
+                                "z": 12.780000686645508
                             },
                             "radius": 3.569999933242798,
                             "isRandom": true
@@ -40,13 +40,13 @@
                     ],
                     "SpObj": [
                         {
-                            "instanceID": 24274
+                            "instanceID": 24282
                         },
                         {
-                            "instanceID": 24268
+                            "instanceID": 24276
                         },
                         {
-                            "instanceID": 24256
+                            "instanceID": 24264
                         }
                     ],
                     "sgId": 0,
@@ -59,13 +59,13 @@
             ],
             "SgObj": [
                 {
-                    "instanceID": 24262
+                    "instanceID": 24270
                 }
             ],
             "scId": 1020,
             "explanation": "",
             "clusterObj": {
-                "instanceID": 24282
+                "instanceID": 24290
             }
         }
     ]

@@ -768,12 +768,12 @@ MonoBehaviour:
       - Sp:
         - spId: 1
           sgId: 0
-          spawnPoint: {x: 5.159209, y: -8.452587, z: -1.5028543}
+          spawnPoint: {x: 15.539999, y: -8.452587, z: -4.59}
           radius: 2.12
           isRandom: 1
         - spId: 2
           sgId: 0
-          spawnPoint: {x: 2.1463444, y: -8.452587, z: -0.77203393}
+          spawnPoint: {x: 6.84, y: -8.452587, z: 12.780001}
           radius: 3.57
           isRandom: 1
         - spId: 3
