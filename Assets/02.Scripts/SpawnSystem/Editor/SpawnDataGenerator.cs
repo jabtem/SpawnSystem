@@ -20,13 +20,6 @@ public class SpawnDataGenerator : EditorWindow
     Scene activeScene;
     static string path;
 
-    private void OnEnable()
-    {
-
-        //clusters = spawnClusterContainer.spawnClusters;
-        //editor = Editor.CreateEditor(this);
-    }
-
     private void OnInspectorUpdate()
     {
         Repaint();
@@ -34,9 +27,6 @@ public class SpawnDataGenerator : EditorWindow
 
     private void OnGUI()
     {
-
-
-
 
         if(activeScene != SceneManager.GetActiveScene())
         {
@@ -52,19 +42,7 @@ public class SpawnDataGenerator : EditorWindow
             JsonSave();
         }
 
-        ////데이터복원(미사용코드)
-        //if(GUILayout.Button("Recovery"))
-        //{
-        //    if(spawnClusterContainer is not null)
-        //    {
-        //        return;
-        //    }
-
-        //    Recovery();
-
-        //}
-
-        ///컨테이너 존재여부 체크
+        //스폰 컨테이너 존재여부 체크
         if(spawnClusterContainer == null)
         {
             if (GameObject.FindObjectOfType<SpawnClusterContainer>() != null)
@@ -74,10 +52,7 @@ public class SpawnDataGenerator : EditorWindow
 
             //컨테이너 없으면 버튼 노출
             if (GUILayout.Button("Create Container"))
-            {
-
                 Create();
-            }
         }
 
 
@@ -86,22 +61,11 @@ public class SpawnDataGenerator : EditorWindow
 
     void JsonSave()
     {
-
         if (spawnClusterContainer != null)
         {
-
             spawnClusterContainer.spawnData.spawnClusters = spawnClusterContainer.spawnClusters;
-
-
-
             var save = JsonUtility.ToJson(spawnClusterContainer.spawnData, true);
 
-            //Json.Net 데이터 저장
-            //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented);
-            //var save = JsonConvert.SerializeObject(spawnClusterContainer.spawnClusters, Formatting.Indented, new JsonSerializerSettings
-            //{
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //});
             File.WriteAllText(path, save);
             Debug.Log("Save Json!");
 
@@ -109,18 +73,13 @@ public class SpawnDataGenerator : EditorWindow
         }
     }
 
+
+    //스폰 클러스터 컨테이너가 씬에없을경우 생성해주는 함수
     void Create()
     {
         GameObject newContainer = new GameObject("SpawnClusterContainer");
         spawnClusterContainer = newContainer.AddComponent<SpawnClusterContainer>();
-        
-
     }
-
-
-
-
-
 }
 
 [CustomEditor(typeof(SpawnDataGenerator))]
@@ -130,7 +89,6 @@ public class SpawnDataGeneratorDraw :Editor
     public override void OnInspectorGUI()
     {
         SerializedProperty("clusters", "스폰클러스터");
-
     }
     void SerializedProperty(string propertyName, string name)
     {

@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 738251639}
   - component: {fileID: 738251640}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
     SgObj:
     - {fileID: 955862931}
     scId: 1020
-    explanation: 
+    explanation: "\uD050\uBE0C \uC0DD\uC131\uD558\uB294 \uADF8\uB8F9"
     clusterObj: {fileID: 1934914196}
   spawnData:
     spawnClusters:
@@ -794,7 +794,7 @@ MonoBehaviour:
       SgObj:
       - {fileID: 955862931}
       scId: 1020
-      explanation: 
+      explanation: "\uD050\uBE0C \uC0DD\uC131\uD558\uB294 \uADF8\uB8F9"
       clusterObj: {fileID: 1934914196}
 --- !u!4 &1979328449
 Transform:

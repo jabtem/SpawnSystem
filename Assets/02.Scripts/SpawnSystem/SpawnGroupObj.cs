@@ -5,13 +5,8 @@ using UnityEngine.AddressableAssets;
 using Newtonsoft.Json;
 public class SpawnGroupObj : MonoBehaviour
 {
-
-
-
     public SpawnGroup spawnGroupData;
-
     float time;
-
     int spawnIndex;
 
     private void OnDrawGizmosSelected()
@@ -43,7 +38,6 @@ public class SpawnGroupObj : MonoBehaviour
 
                 if (time >= spawnGroupData.spawnDelay)
                 {
-
                     ++spawnGroupData.SpawnCount;
                     time = 0f;
                     Spawn();
@@ -65,7 +59,6 @@ public class SpawnGroupObj : MonoBehaviour
             spawnIndex %= spawnGroupData.Sp.Count;
         }
 
-
         //스폰포인트가 랜덤옵션인경우
         if (spawnGroupData.Sp[spawnIndex].isRandom)
         {
@@ -75,16 +68,12 @@ public class SpawnGroupObj : MonoBehaviour
             Vector3 randPoint = Random.insideUnitCircle * spawnGroupData.Sp[spawnIndex].radius;
             Vector3 randSpawnPoint = originPoint + randPoint;
             
-
             //y좌표 리셋
             randSpawnPoint.y = originPoint.y;
             SpawnMonster(spawnGroupData.monsterType, randSpawnPoint);
         }
         else
-        {
             SpawnMonster(spawnGroupData.monsterType, spawnGroupData.Sp[spawnIndex].spawnPoint);
-        }
-
 
         ++spawnIndex;
     }

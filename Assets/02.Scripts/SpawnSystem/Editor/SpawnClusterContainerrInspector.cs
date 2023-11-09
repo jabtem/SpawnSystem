@@ -14,8 +14,6 @@ public class SpawnClusterContainerrInspector : Editor
 
     SpawnClusterContainer spawnClusterContainer = null;
 
-
-
     //버튼을 클릭한 클러스터의 인덱스
     public int curIndex = -1;
     SpawnGroupObj curSg;
@@ -27,15 +25,10 @@ public class SpawnClusterContainerrInspector : Editor
         {
             spawnClusterContainer = (SpawnClusterContainer)target;
         }
-
-
     }
 
     public override void OnInspectorGUI()
     {
-
-
-
         if(spawnClusterContainer != null)
         {
             SerializedProperty("spawnClusters", "스폰클러스터");
@@ -52,23 +45,14 @@ public class SpawnClusterContainerrInspector : Editor
                     GameObject group = new GameObject($"SpawnGroup");
                     group.transform.SetParent(spawnClusterContainer.spawnClusters[i].clusterObj.transform);
                     curSg = group.AddComponent<SpawnGroupObj>();
-
-
                     spawnClusterContainer.spawnClusters[curIndex].SgObj.Add(curSg);
-
                     curSg.spawnGroupData = new(spawnClusterContainer.spawnClusters[curIndex].scId);
                     spawnClusterContainer.spawnClusters[curIndex].Sg.Add(curSg.spawnGroupData);
                     view.Focus();
-
-
-
                 }
                 GUI.backgroundColor = Color.red;
                 if (spawnClusterContainer.spawnClusters[i].isClick && GUILayout.Button("Point Set End"))
-                {
                     FinishEdit(i);
-
-                }
 
             }
             GUI.backgroundColor = Color.white;
@@ -96,8 +80,6 @@ public class SpawnClusterContainerrInspector : Editor
 
     void FinishEdit(int index)
     {
-
-
         if(index >=0)
         {
             spawnClusterContainer.spawnClusters[index].isClick = false;
@@ -119,10 +101,6 @@ public class SpawnClusterContainerrInspector : Editor
 
     public void OnSceneGUI()
     {
-
-
-
-
         if (curIndex >= 0 && spawnClusterContainer.spawnClusters.Count > 0)
         {
             HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
@@ -132,9 +110,6 @@ public class SpawnClusterContainerrInspector : Editor
 
             if (Event.current.button == 0)
             {
-
-
-
                 Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -152,8 +127,6 @@ public class SpawnClusterContainerrInspector : Editor
                 }
             }
         }
-
-
     }
 
 
@@ -182,6 +155,4 @@ public class SpawnClusterContainerrInspector : Editor
             serializedObject.ApplyModifiedProperties();
         }
     }
-
-
 }

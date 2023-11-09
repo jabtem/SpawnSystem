@@ -40,13 +40,13 @@
                     ],
                     "SpObj": [
                         {
-                            "instanceID": 24282
+                            "instanceID": 25010
                         },
                         {
-                            "instanceID": 24276
+                            "instanceID": 25004
                         },
                         {
-                            "instanceID": 24264
+                            "instanceID": 24992
                         }
                     ],
                     "sgId": 0,
@@ -59,13 +59,13 @@
             ],
             "SgObj": [
                 {
-                    "instanceID": 24270
+                    "instanceID": 24998
                 }
             ],
             "scId": 1020,
-            "explanation": "",
+            "explanation": "큐브 생성하는 그룹",
             "clusterObj": {
-                "instanceID": 24290
+                "instanceID": 25018
             }
         }
     ]

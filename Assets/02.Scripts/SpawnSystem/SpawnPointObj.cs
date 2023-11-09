@@ -5,17 +5,11 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class SpawnPointObj : MonoBehaviour
 {
-
-
     public SpawnPoint spawnPointData;
 
     private void OnDrawGizmosSelected()
     {
 #if UNITY_EDITOR
-
-        //Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(transform.position, 0.5f);
-
         var oldColor = UnityEditor.Handles.color;
         var color = Color.blue;
         color.a = 0.1f;

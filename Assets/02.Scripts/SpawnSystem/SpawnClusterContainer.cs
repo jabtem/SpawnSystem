@@ -82,10 +82,8 @@ public class SpawnPoint
     [Header("포인트 ID")]
     //This ID
     public int spId;
-
     //Parent ID;
     public int sgId;
-
     //SpawnPoint
     public Vector3 spawnPoint;
 
@@ -111,7 +109,6 @@ public class SpawnData
 public class SpawnClusterContainer : MonoBehaviour
 {
     //각각 ID와 합쳐질 씬ID , 씬ID + 클러스터ID = JSON에 저장될 클러스터 ID
-
     SpawnClusterContainer()
     {
         if(instance == null)
@@ -126,14 +123,12 @@ public class SpawnClusterContainer : MonoBehaviour
     }
 
     static SpawnClusterContainer instance;
-
     public int sceneId;
-
     public List<SpawnCluster> spawnClusters = new();
-
     public SpawnData spawnData;
 
-     
+  
+    //클러스터 컨테이너에서 값변경시 데이터 동기화 함수
     public void DataRefresh()
     {
         foreach (var cluster in spawnClusters)

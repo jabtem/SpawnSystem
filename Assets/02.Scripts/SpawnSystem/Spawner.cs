@@ -26,21 +26,14 @@ public class Spawner : MonoBehaviour
         jsonPath = $"Spawndata/{SceneManager.GetActiveScene().name}SpawnData";
         var jsonData = Resources.Load<TextAsset>(jsonPath);
         readJsonData = JsonUtility.FromJson<SpawnData>(jsonData.ToString());
-
-        //TryGetComponent<SpawnClusterContainer>(out container);
-
-        
-
     }
 
     IEnumerator Start()
     {
         WebGlDataRead(dataPath);
-
+        //데이터 로드완료까지 대기
         while (data is null)
-        {
             yield return new WaitForEndOfFrame();
-        }
 
         SpawnReqeust();
     }
@@ -53,18 +46,11 @@ public class Spawner : MonoBehaviour
     private IEnumerator CoWebGlDataRead(string path)
     {
         UnityWebRequest uri = UnityWebRequest.Get(path);
-
         yield return uri.SendWebRequest();
 
-
         byte[] uriData = uri.downloadHandler.data;
-
-
         MemoryStream stream = new(uriData);
-
         data = new SpawnInfo(stream, SpawnInfo.Format.Json);
-
-
     }
 
 
@@ -85,15 +71,9 @@ public class Spawner : MonoBehaviour
                 foreach (var group in cluster.SgObj)
                 {
                     if (group.spawnGroupData.sgId == gid)
-                    {
                         group.spawnGroupData.spawnStart = true;
-
-                    }
                 }
             }
         }
     }
-
-    
-
 }
